@@ -5,7 +5,7 @@ Projeto criado para pessoas com algum tipo de necessidade ou grupo de risco do C
 ## Contributors
 - Caio Araujo Mariano
 - Thiago Fontanella Ribeiro Francisco
-- Guilherme Lapa Baione
+- Guilherme Lapa Baioni
 - Gabriel do Nascimento Jesus
 - Lucas de Assis Lima
 
