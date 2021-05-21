@@ -17,6 +17,11 @@ const Header = () => {
             Meus serviços
           </Link>
         </li>
+        <li>
+          <Link to="/status-services" className="header-links">
+            Status
+          </Link>
+        </li>
       </ul>
     </div>
   );
