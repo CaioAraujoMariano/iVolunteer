@@ -3,15 +3,17 @@ import '../scss/MyServices.scss';
 import Header from './Header';
 import Background from './Background';
 import ActiveServices from './ActiveServices';
+import Footer from './Footer';
 
 const MyServices = () => {
   return (
     <div>
       <Header />
       <div className="myServices-content">
-        <Background>Acompanhe os seus serviços ativos ;)</Background>
+        <Background title="Olá Fulano!">Acompanhe os seus serviços ativos ;)</Background>
         <ActiveServices />
       </div>
+      <Footer />
     </div>
   );
 };
