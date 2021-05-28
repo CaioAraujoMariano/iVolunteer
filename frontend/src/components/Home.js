@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import '../scss/Home.scss';
 import Header from './Header';
 import HomeContent from './HomeContent';
@@ -11,28 +11,35 @@ import RegisterModal from './RegisterModal';
 const Home = () => {
   const [loginShow, setLoginShow] = React.useState('');
   const [registerShow, setRegisterShow] = React.useState('');
+  const [closeButton, setCloseButton] = React.useState('');
+  const modalRef = useRef(null);
 
   const showRegisterModal = () => {
     console.log('show');
     setRegisterShow('show');
-  };
-
-  const closeRegisterModal = (event) => {
-    console.log('hidden');
-    setRegisterShow('');
-    document.body.removeEventListener('click', closeRegisterModal);
+    onClickClose();
   };
 
   const showLoginModal = () => {
     console.log('show');
     setLoginShow('show');
+    onClickClose();
   };
 
-  const closeLoginModal = (event) => {
-    console.log('hidden');
+  const closeModalFunction = (event) => {
     setLoginShow('');
-    document.body.removeEventListener('click', closeLoginModal);
+    setRegisterShow('');
+    setCloseButton('');
   };
+
+  function onClickClose() {
+    if (setLoginShow === '' || setRegisterShow === '') {
+      setCloseButton('');
+    } else {
+      setCloseButton('show');
+      console.log('mostrando');
+    }
+  }
 
   return (
     <div>
@@ -46,8 +53,16 @@ const Home = () => {
           <Button bgColor="#FFF500">Cadastre-se</Button>
         </div>
       </div>
-      <RegisterModal className={registerShow} />
-      <LoginModal className={loginShow} />
+      <div className="modals">
+        <RegisterModal className={registerShow} modalRef={modalRef} />
+        <LoginModal className={loginShow} modalRef={modalRef} />
+        <div
+          className={`${closeButton} closeModal`}
+          onClick={closeModalFunction}
+        >
+          Fechar X
+        </div>
+      </div>
       <HomeContent />
       <Footer />
     </div>
