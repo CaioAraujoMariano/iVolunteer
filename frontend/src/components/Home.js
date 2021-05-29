@@ -7,6 +7,7 @@ import Button from './Button';
 import Background from './Background';
 
 const Home = () => {
+
   return (
     <div>
       <Header />
