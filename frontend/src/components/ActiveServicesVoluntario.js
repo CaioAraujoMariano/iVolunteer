@@ -3,7 +3,7 @@ import '../scss/ActiveServices.scss';
 import Button from './Button';
 import ViewDetails from './Modal/ViewDetailsModal'
 
-const ActiveServices = () => {
+const ActiveServicesVoluntario = () => {
 
   const [detailsShow, setDetailsShow] = React.useState('');
   const [closeButton, setCloseButton] = React.useState('');
@@ -31,6 +31,7 @@ const ActiveServices = () => {
 
   return (
     <div className="activeServices-container">
+      <Button bgColor="#FFF500" href="./servicos-disponiveis">Serviços Disponíveis</Button>
       <h2>Serviços ativos</h2>
       <div className="servicesList">
         <ul>
@@ -67,4 +68,4 @@ const ActiveServices = () => {
   );
 };
 
-export default ActiveServices;
+export default ActiveServicesVoluntario;

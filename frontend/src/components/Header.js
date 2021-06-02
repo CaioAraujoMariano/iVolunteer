@@ -22,6 +22,11 @@ const Header = () => {
             Status
           </Link>
         </li>
+        <li>
+          <Link to="/voluntario" className="header-links">
+              Voluntário
+          </Link>
+        </li>
       </ul>
     </div>
   );

@@ -1,9 +1,9 @@
 import React from 'react';
 import '../scss/Button.scss';
 
-const Button = ({ href, bgColor, children }) => {
+const Button = ({ href, bgColor, children, ...props }) => {
   return (
-    <div className="button-container">
+    <div className="button-container" style={{ ...props }}>
       <a href={href} style={{ backgroundColor: bgColor }}>
         {children}
       </a>
