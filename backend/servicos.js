@@ -19,24 +19,31 @@ app.listen(port);
 console.log('API funcionando!'); 
 
 
-router.get("/usuarios",(req, res) => {
-    execSQLQuery("SELECT * FROM usuarios", res)
+router.get("/servicos",(req, res) => {
+    execSQLQuery("SELECT * FROM servicos", res)
 });
 
-router.get("/usuarios/:id?",(req, res) => {
+router.get("/servicos/:id?",(req, res) => {
     //let filter = " ";
-    //if (req.params.id) filter="WHERE idusuarios=" + parseInt(req.params.id);
-    execSQLQuery("SELECT * FROM usuarios WHERE idusuarios=" + parseInt(req.params.id), res)
+    //if (req.params.id) filter="WHERE idservicos=" + parseInt(req.params.id);
+    execSQLQuery("SELECT * FROM servicos WHERE idservicos=" + parseInt(req.params.id), res)
 });
 
-router.post("/usuarios", (req, res, err) => {
-    console.log(err)
+router.post("/servicos", (req, res) => {
     const nome = req.body.nome;
-    const cpf = req.body.cpf;
-    const telefone = req.body.telefone;
-    const data_nascimento = req.body.data_nascimento;
-    execSQLQuery(`INSERT INTO usuarios(nome, cpf, telefone, data_nascimento) VALUES('${nome}', '${cpf}', '${telefone}', '${data_nascimento}')`, res);
+    const descricao = req.body.descricao;
+    const limite = req.body.limite;
+    const status = req.body.status;
+    execSQLQuery(`INSERT INTO servicos(nome, descricao, limite, status) VALUES('${nome}', '${descricao}', '${limite}', '${status}')`, res);
 });
+
+router.put("/servicos/:id", (req, res) => {
+    const id = parseInt(req.params.id);
+    const status = req.body.status;
+    execSQLQuery(`UPDATE servicos SET status="${status}" WHERE idservicos = "${id}"`, res);
+});
+
+
 
 function execSQLQuery(sqlQry, res){
     const connection = mysql.createConnection({
