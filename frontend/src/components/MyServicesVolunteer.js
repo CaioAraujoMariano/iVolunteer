@@ -2,7 +2,7 @@ import React from 'react';
 import '../scss/MyServicesVolunteer.scss';
 import Header from './Header';
 import Background from './Background';
-import ActiveServices from './ActiveServices';
+import ActiveServicesVoluntario from './ActiveServicesVoluntario';
 import Footer from './Footer';
 
 const MyServices = () => {
@@ -13,7 +13,7 @@ const MyServices = () => {
         <Background title="Olá Fulano!">
           Acompanhe os seus serviços ativos ;)
         </Background>
-        <ActiveServices />
+        <ActiveServicesVoluntario />
       </div>
       <Footer />
     </div>

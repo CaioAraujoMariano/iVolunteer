@@ -1,9 +1,7 @@
-import React, { useState, useRef, useEffect } from 'react';
-import '../scss/ActiveServices.scss';
+import React, { useRef } from 'react';
+import '../scss/ActiveServicesVoluntario.scss'
 import Button from './Button';
 import ViewDetails from './Modal/ViewDetailsModal';
-import Header from './Header';
-import Footer from './Footer';
 
 const ActiveServicesVoluntario = () => {
   const [detailsShow, setDetailsShow] = React.useState('');
@@ -32,7 +30,6 @@ const ActiveServicesVoluntario = () => {
 
   return (
     <>
-      <Header />
       <div className="activeServices-container">
         <Button bgColor="#FFF500" href="./servicos-disponiveis">
           Serviços Disponíveis
@@ -56,7 +53,7 @@ const ActiveServicesVoluntario = () => {
               <p>
                 <span>Serviço:</span> Levar no dentista
               </p>
-              <button onClick={showViewDetailsModal}>Ver Detalhes</button>
+              <button onClick={showViewDetailsModal} className="botao-servicos-disponiveis">Ver Detalhes</button>
             </li>
           </ul>
         </div>
@@ -70,7 +67,6 @@ const ActiveServicesVoluntario = () => {
           </div>
         </div>
       </div>
-      <Footer />
     </>
   );
 };

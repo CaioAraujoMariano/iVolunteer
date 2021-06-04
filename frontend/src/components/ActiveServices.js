@@ -1,27 +1,27 @@
 import React, { useState, useRef, useEffect } from 'react';
 import '../scss/ActiveServices.scss';
 import Button from './Button';
-import ViewDetails from './Modal/ViewDetailsModal'
+import NewServiceModal from './Modal/CreateServiceModal';
 
 const ActiveServices = () => {
 
-  const [detailsShow, setDetailsShow] = React.useState('');
+  const [newServiceShow, setNewServiceShow] = React.useState('');
   const [closeButton, setCloseButton] = React.useState('');
   const modalRef = useRef(null);
 
-  const showViewDetailsModal = () => {
+  const showNewServiceModal = () => {
     console.log('show');
-    setDetailsShow('show');
+    setNewServiceShow('show');
     onClickClose();
   };
 
   const closeModalFunction = (event) => {
-    setDetailsShow('');
+    setNewServiceShow('');
     setCloseButton('');
   };
 
   function onClickClose() {
-    if (setDetailsShow === '') {
+    if (setNewServiceShow === '') {
       setCloseButton('');
     } else {
       setCloseButton('show');
@@ -31,6 +31,9 @@ const ActiveServices = () => {
 
   return (
     <div className="activeServices-container">
+      <Button bgColor="#FFF500" onClick={showNewServiceModal}> 
+          Novo Serviço
+      </Button>
       <h2>Serviços ativos</h2>
       <div className="servicesList">
         <ul>
@@ -50,12 +53,12 @@ const ActiveServices = () => {
             <p>
               <span>Serviço:</span> Levar no dentista
             </p>
-            <button onClick={showViewDetailsModal}>Ver Detalhes</button>
+            <button onClick={()=>{window.location.href ='/status-services'}}>Ver Detalhes</button>
           </li>
         </ul>
       </div>
       <div className="modals">
-        <ViewDetails className={detailsShow} modalRef={modalRef} />
+        <NewServiceModal className={newServiceShow} modalRef={modalRef} />
         <div
           className={`${closeButton} closeModal`}
           onClick={closeModalFunction}
