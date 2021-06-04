@@ -22,7 +22,7 @@
     box-shadow: 5px 5px 1000px black;
   }
 
-  p{
+  p {
     font-size: 30px;
     justify-content: center;
     display: flex;
@@ -65,4 +65,25 @@
 
 .show {
   display: block !important;
+}
+
+@media (max-width: 1200px) {
+  .login-modal {
+    .login-modal-container {
+      width: 80%;
+      height: 80vh;
+      padding: 0;
+      padding-bottom: 0;
+      padding-left: 20px;
+      padding-right: 20px;
+      top: 50px;
+      left: 20px;
+    }
+
+    button {
+      margin-top: 20px;
+      width: 100%;
+      font-size: 16px;
+    }
+  }
 }

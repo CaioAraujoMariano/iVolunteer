@@ -1,51 +1,81 @@
-.service-card-container{
-    height: 100%;
-    margin: 100px;
+.service-card-container {
+  height: 100%;
+  margin: 100px;
 
-    .service-card{
-        align-items: center;
-        justify-content: center;
-        display: relative;
-        position: absolute;
-        border-radius: 50px;
-        background-color: #FFFFFF;
-        height: 25vh;
-        width: 40vh;
-    
-        .service-card-tittle{
-            display: flex;
-            justify-content: center;
-            padding: 10px;
-            font-size: 25px;
-            margin-top: 10px;
-        }
-    
-        h3{
-            color: #0066ff;
-            padding-right: 10px;
-        }
-    
-        .service-card-content{
-            font-size: 20px;
-            margin-top: 20px;
-            margin-left: 50px;
-            margin-right: 20px;
-            margin-bottom: 10px;
-            
-            .button-voluntario{
-                cursor: pointer;
-                background: #39C136;
-                padding: 10px;
-                padding-left: 50px;
-                padding-right: 50px;
-                position: relative;
-                color: #FFFFFF;
-                font-size: 20px;
-                border: hidden;
-                top: 7vh;
-                left: 3.6vh;
-            }
-        }
+  .service-card {
+    align-items: center;
+    justify-content: center;
+    border-radius: 50px;
+    background-color: #ffffff;
+    height: 25vh;
+    width: 40vh;
+    padding: 20px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+      Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+    .service-card-title {
+      display: flex;
+      justify-content: center;
+      padding: 10px;
+      font-size: 25px;
+      margin-top: 10px;
+
+      h3 {
+        color: black;
+        font-weight: bold;
+        padding-right: 10px;
+      }
+
+      p {
+        color: #3cb2cc;
+        font-weight: 500;
+      }
     }
+
+    .service-card-content {
+      font-size: 20px;
+      margin-top: 20px;
+      margin-left: 50px;
+      margin-right: 20px;
+      margin-bottom: 10px;
+
+      .button-voluntario {
+        cursor: pointer;
+        background: #39c136;
+        padding: 10px;
+        padding-left: 50px;
+        padding-right: 50px;
+        color: #ffffff;
+        font-size: 20px;
+        border: hidden;
+        top: 7vh;
+        left: 3.6vh;
+      }
+    }
+  }
 }
 
+@media (max-width: 1200px) {
+  .service-card-container {
+    margin: 0;
+    margin-bottom: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: auto;
+
+    .service-card {
+      height: 30vh;
+      width: 80%;
+      padding: 10px;
+      margin-top: 20px;
+      margin-left: 30px;
+
+      .service-card-content {
+        .button-voluntario {
+          margin-top: 20px;
+        }
+      }
+    }
+  }
+}

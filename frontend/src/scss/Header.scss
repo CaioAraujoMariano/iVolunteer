@@ -32,3 +32,11 @@
     }
   }
 }
+
+@media (max-width: 1200px) {
+  .header-container {
+    ul {
+      display: none;
+    }
+  }
+}

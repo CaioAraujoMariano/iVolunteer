@@ -7,11 +7,11 @@ const LoginModal = ({ modalRef, className }) => {
       <div className="login-modal-container">
         <p>Login ;)</p>
         <label htmlFor="cpf">CPF:</label>
-        <input type="text" id="cpf" placeholder="111.222.333-00"/>
+        <input type="text" id="cpf" placeholder="111.222.333-00" />
         <label htmlFor="senha">Senha:</label>
-        <input type="text" id="senha" placeholder="*****"/>
+        <input type="password" id="senha" placeholder="*****" />
+        <button>Login</button>
       </div>
-      
     </div>
   );
 };

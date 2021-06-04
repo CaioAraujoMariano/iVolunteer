@@ -16,3 +16,13 @@
     }
   }
 }
+
+@media (max-width: 1200px) {
+  .button-container {
+    a {
+      padding: 15px;
+      border-radius: 10px;
+      margin-right: 10px;
+    }
+  }
+}

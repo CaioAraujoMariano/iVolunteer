@@ -2,3 +2,15 @@
   display: flex;
   justify-content: space-around;
 }
+
+@media (max-width: 1200px) {
+  .myServices-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: initial;
+
+    .background-container p {
+      display: none;
+    }
+  }
+}

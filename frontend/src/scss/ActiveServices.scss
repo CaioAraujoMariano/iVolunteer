@@ -49,3 +49,19 @@
     }
   }
 }
+
+@media (max-width: 1200px) {
+  .activeServices-container {
+    margin-top: 20px;
+    padding: 10px;
+
+    .button-container {
+      margin-bottom: 20px;
+    }
+
+    .servicesList {
+      background-color: white;
+      padding: 15px;
+    }
+  }
+}

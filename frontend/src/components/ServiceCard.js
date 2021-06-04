@@ -1,21 +1,19 @@
 import React from 'react';
 import '../scss/ServiceCard.scss';
 
-const ServiceCard = () => {
-    return (
-        <div className="service-card-container">
-            <div className="service-card">
-                <div className="service-card-tittle">
-                    <h3>Serviço:</h3>
-                    <p>Ajuda no Mercado</p>
-                </div>
-                <div className="service-card-content">
-                    <p>Comprar pão, leite, melância. Muito obrigado ;)</p>
-                    <button className="button-voluntario">Ser Voluntário</button>
-                </div>
-            </div>
-        </div>
-    );
+const ServiceCard = ({ service, description }) => {
+  return (
+    <div className="service-card">
+      <div className="service-card-title">
+        <h3>Serviço:</h3>
+        <p>{service}</p>
+      </div>
+      <div className="service-card-content">
+        <p>{description}</p>
+        <button className="button-voluntario">Ser Voluntário</button>
+      </div>
+    </div>
+  );
 };
 
-export default ServiceCard
+export default ServiceCard;

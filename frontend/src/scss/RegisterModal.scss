@@ -57,3 +57,18 @@
 .show {
   display: block !important;
 }
+
+@media (max-width: 1200px) {
+  .register-modal {
+    .register-modal-container {
+      width: 70%;
+      padding: 40px;
+      top: 50px;
+      left: 20px;
+    }
+
+    button {
+      width: 100%;
+    }
+  }
+}

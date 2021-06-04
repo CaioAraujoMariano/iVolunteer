@@ -32,3 +32,28 @@
     position: absolute;
   }
 }
+
+@media (max-width: 1200px) {
+  .home-content {
+    padding-bottom: 130px;
+    background-color: #c7c7c7c7;
+
+    p {
+      padding-top: 30px;
+      padding-left: 20px;
+      font-size: 20px;
+    }
+
+    .home-image2 {
+      display: none;
+    }
+
+    .home-image1 {
+      display: none;
+    }
+
+    .button-container {
+      top: 80px !important;
+    }
+  }
+}

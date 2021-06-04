@@ -9,7 +9,6 @@ import LoginModal from './Modal/LoginModal';
 import RegisterModal from './Modal/RegisterModal';
 
 const Home = () => {
-
   const [loginShow, setLoginShow] = React.useState('');
   const [registerShow, setRegisterShow] = React.useState('');
   const [closeButton, setCloseButton] = React.useState('');
@@ -64,7 +63,7 @@ const Home = () => {
           Fechar X
         </div>
       </div>
-      <HomeContent />
+      <HomeContent onClickFunction={showRegisterModal} />
       <Footer />
     </div>
   );

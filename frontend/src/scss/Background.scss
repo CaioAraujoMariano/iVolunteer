@@ -29,3 +29,19 @@
     left: 305px;
   }
 }
+
+@media (max-width: 1200px) {
+  .background-container {
+    img {
+      display: none;
+    }
+
+    :nth-child(2) {
+      font-size: 22px;
+      position: absolute;
+      top: 170px;
+      left: 0;
+      padding: 20px;
+    }
+  }
+}
