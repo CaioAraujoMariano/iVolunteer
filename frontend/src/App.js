@@ -8,6 +8,8 @@ import AvailableServices from './components/AvailableServices';
 import Profile from './components/Profile';
 
 function App() {
+  let dados = localStorage.getItem('dados');
+  console.log(dados);
   return (
     <BrowserRouter>
       <Switch>

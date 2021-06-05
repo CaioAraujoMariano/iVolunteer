@@ -74,8 +74,23 @@ router.post('/usuarios', (req, res, err) => {
   const cpf = req.body.cpf;
   const telefone = req.body.telefone;
   const data_nascimento = req.body.data_nascimento;
+  const senha = req.body.senha;
+  const nivel_usuario = req.body.nivel_usuario;
   execSQLQuery(
-    `INSERT INTO usuarios(nome, cpf, telefone, data_nascimento) VALUES('${nome}', '${cpf}', '${telefone}', '${data_nascimento}')`,
+    `INSERT INTO usuarios(nome, cpf, telefone, data_nascimento, senha, nivel_usuario) VALUES('${nome}', '${cpf}', '${telefone}', '${data_nascimento}', '${senha}', '${nivel_usuario}')`,
+    res,
+  );
+  console.log(err);
+});
+
+// API DE LOGIN
+
+router.post('/usuarios/login', (req, res, err) => {
+  const { cpf, senha } = req.body;
+  execSQLQuery(
+    `SELECT * FROM usuarios WHERE cpf = '${cpf}' AND senha = '${senha}'`,
     res,
   );
 });
+
+// API DE SERVIÇOS ATIVOS

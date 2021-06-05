@@ -1,10 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
 import '../scss/ActiveServices.scss';
 import Button from './Button';
-import NewServiceModal from './Modal/CreateServiceModal';
+import NewServiceModal from './Modal/NewServiceModal';
 
 const ActiveServices = () => {
-
   const [newServiceShow, setNewServiceShow] = React.useState('');
   const [closeButton, setCloseButton] = React.useState('');
   const modalRef = useRef(null);
@@ -31,9 +30,10 @@ const ActiveServices = () => {
 
   return (
     <div className="activeServices-container">
-      <Button bgColor="#FFF500" onClick={showNewServiceModal}> 
-          Novo Serviço
-      </Button>
+      <div onClick={showNewServiceModal}>
+        <Button bgColor="#FFF500">Novo Serviço</Button>
+      </div>
+
       <h2>Serviços ativos</h2>
       <div className="servicesList">
         <ul>
@@ -53,7 +53,13 @@ const ActiveServices = () => {
             <p>
               <span>Serviço:</span> Levar no dentista
             </p>
-            <button onClick={()=>{window.location.href ='/status-services'}}>Ver Detalhes</button>
+            <button
+              onClick={() => {
+                window.location.href = '/status-services';
+              }}
+            >
+              Ver Detalhes
+            </button>
           </li>
         </ul>
       </div>
@@ -63,7 +69,7 @@ const ActiveServices = () => {
           className={`${closeButton} closeModal`}
           onClick={closeModalFunction}
         >
-        X
+          X
         </div>
       </div>
     </div>

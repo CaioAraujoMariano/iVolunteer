@@ -7,7 +7,9 @@ const RegisterModal = ({ modalRef, className }) => {
   const [cpf, setCPF] = React.useState('');
   const [phone, setPhone] = React.useState('');
   const [date, setDate] = React.useState('');
-  const [profile, setProfile] = React.useState('');
+  const [profile, setProfile] = React.useState();
+  const [password, setPassword] = React.useState('');
+  const [address, setAddress] = React.useState('');
 
   const myChangeHandlerName = (event) => {
     setNome(event.target.value);
@@ -25,10 +27,17 @@ const RegisterModal = ({ modalRef, className }) => {
     setDate(event.target.value);
   };
 
+  const myChangeHandlerAddress = (event) => {
+    setAddress(event.target.value);
+  };
+
   const myChangeHandlerProfile = (event) => {
     setProfile(event.target.value);
   };
 
+  const myChangeHandlerPassword = (event) => {
+    setPassword(event.target.value);
+  };
   const sendRegister = () => {
     axios
       .post('http://localhost:8000/usuarios', {
@@ -36,6 +45,8 @@ const RegisterModal = ({ modalRef, className }) => {
         cpf: cpf,
         telefone: phone,
         data_nascimento: date,
+        nivel_usuario: parseInt(profile),
+        senha: password,
       })
       .then((resp) => {
         console.log(resp.data);
@@ -59,6 +70,13 @@ const RegisterModal = ({ modalRef, className }) => {
           placeholder="000.000.000/00"
           onChange={myChangeHandlerCPF}
         />
+        <label htmlFor="endereco">Endereço:</label>
+        <input
+          type="text"
+          id="endereco"
+          placeholder="Rua Alves da Cunha Nº 556"
+          onChange={myChangeHandlerAddress}
+        />
         <label htmlFor="telefone">Telefone</label>
         <input
           type="text"
@@ -78,6 +96,7 @@ const RegisterModal = ({ modalRef, className }) => {
             type="radio"
             id="chooseProfile"
             name="chooseProfile"
+            value="0"
             onChange={myChangeHandlerProfile}
           />
           <label htmlFor="chooseProfile">Voluntário</label>
@@ -85,10 +104,18 @@ const RegisterModal = ({ modalRef, className }) => {
             type="radio"
             id="chooseProfile"
             name="chooseProfile"
+            value="1"
             onChange={myChangeHandlerProfile}
           />
           <label htmlFor="chooseProfile">Vulnerável</label>
         </div>
+        <label htmlFor="password">Senha</label>
+        <input
+          type="password"
+          id="password"
+          placeholder="Crie uma senha"
+          onChange={myChangeHandlerPassword}
+        />
         <button onClick={sendRegister}>Cadastrar Usuário</button>
       </div>
     </div>

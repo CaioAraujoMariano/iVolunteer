@@ -4,7 +4,7 @@ import Header from './Header';
 import Background from './Background';
 import Button from './Button';
 import Footer from './Footer';
-import NewServiceModal from './Modal/CreateServiceModal';
+import NewServiceModal from './Modal/NewServiceModal';
 
 const StatusServices = () => {
   const [newServiceShow, setNewServiceShow] = React.useState('');
