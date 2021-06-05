@@ -25,11 +25,13 @@ const LoginModal = ({ modalRef, className }) => {
           let nivel_usuario = resp.data[0].nivel_usuario;
           if (nivel_usuario === 1) {
             window.location.href = '/meus-servicos';
-            localStorage.setItem('dados', JSON.stringify(resp.data[0]));
           } else {
             window.location.href = '/voluntario';
-            localStorage.setItem('dados', JSON.stringify(resp.data[0]));
           }
+          localStorage.clear();
+          localStorage.setItem('id', resp.data[0].idusuarios);
+          localStorage.setItem('nome', resp.data[0].nome);
+          localStorage.setItem('nivel_usuario', resp.data[0].nivel_usuario);
         } else {
           alert('Usuário e/ou senha incorretos');
         }
