@@ -80,14 +80,7 @@ router.post('/usuarios', (req, res, err) => {
   execSQLQuery(
     `INSERT INTO usuarios(nome, cpf, telefone, data_nascimento, senha, nivel_usuario) VALUES('${nome}', '${cpf}', '${telefone}', '${data_nascimento}', '${senha}', '${nivel_usuario}')`,
     res,
-  ).then(
-    execSQLQuery('SELECT * FROM usuarios', res).then(
-      execSQLQuery(
-        `INSERT INTO enderecos(nome, cpf, telefone, data_nascimento, senha, nivel_usuario) VALUES('${nome}', '${cpf}', '${telefone}', '${data_nascimento}', '${senha}', '${nivel_usuario}')`,
-        res,
-      ),
-    ),
-  );
+  )
   console.log(err);
 });
 
@@ -104,9 +97,9 @@ router.post('/usuarios/login', (req, res, err) => {
 // API DE SERVIÇOS ATIVOS
 
 router.post('servicos/usuarios', (req, res, err) => {
-  const { nome, descricao, limite, status } = req.body;
+  const { idusuarios } = req.body;
   execSQLQuery(
-    `SELECT * FROM servicos WHERE idservicos = '${idservicos}' AND idusuarios = '${idusuarios}'`
+    `SELECT * FROM usuarios_has_servicos WHERE usuarios_idusuarios = '${idusuarios}'`
   )
 });
 

@@ -3,6 +3,20 @@ import '../scss/ActiveServicesVoluntario.scss';
 import Button from './Button';
 import ViewDetails from './Modal/ViewDetailsModal';
 
+/*
+const AvailableServices = () => {
+  const [servicos, setServicos] = React.useState([]);
+
+  useEffect(() => {
+    fetch('http://localhost:8000/servicos/usuarios/id')
+      .then((res) => res.json())
+      .then((result) => {
+        setServicos(result);
+      });
+  }, []);
+  
+*/
+
 const ActiveServicesVoluntario = () => {
   const [detailsShow, setDetailsShow] = React.useState('');
   const [closeButton, setCloseButton] = React.useState('');
@@ -39,13 +53,23 @@ const ActiveServicesVoluntario = () => {
               <p>
                 <span>Serviço:</span> Ajuda no mercado
               </p>
-              <button>Ver Detalhes</button>
+              <button
+                onClick={showViewDetailsModal}
+                className="botao-servicos-disponiveis"
+              >
+                Ver Detalhes
+              </button>
             </li>
             <li>
               <p>
                 <span>Serviço:</span> Levar pet pra passear
               </p>
-              <button>Ver Detalhes</button>
+              <button
+                onClick={showViewDetailsModal}
+                className="botao-servicos-disponiveis"
+              >
+                Ver Detalhes
+              </button>
             </li>
             <li>
               <p>
