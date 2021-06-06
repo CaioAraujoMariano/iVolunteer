@@ -37,7 +37,7 @@ const ServiceCard = ({ service, description }) => {
           Ser Voluntário
         </button>
       </div>
-      <div className="modals">
+      {/* <div className="modals">
         <ServiceCardModal className={serviceCardShow} modalRef={modalRef} />
         <div
           className={`${closeButton} closeModal`}
@@ -45,7 +45,7 @@ const ServiceCard = ({ service, description }) => {
         >
           Fechar X
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

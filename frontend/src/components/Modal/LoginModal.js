@@ -24,9 +24,9 @@ const LoginModal = ({ modalRef, className }) => {
         if (resp.data.length > 0) {
           let nivel_usuario = resp.data[0].nivel_usuario;
           if (nivel_usuario === 1) {
-            window.location.href = '/meus-servicos';
+            window.location.href = '/meus-servicos-vulneravel';
           } else {
-            window.location.href = '/voluntario';
+            window.location.href = '/meus-servicos';
           }
           localStorage.clear();
           localStorage.setItem('id', resp.data[0].idusuarios);

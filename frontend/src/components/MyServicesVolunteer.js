@@ -5,7 +5,7 @@ import Background from './Background';
 import ActiveServicesVoluntario from './ActiveServicesVoluntario';
 import Footer from './Footer';
 
-const MyServices = () => {
+const MyServicesVolunteer = () => {
   return (
     <div>
       <Header />
@@ -20,4 +20,4 @@ const MyServices = () => {
   );
 };
 
-export default MyServices;
+export default MyServicesVolunteer;

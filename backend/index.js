@@ -25,8 +25,6 @@ router.get('/servicos', (req, res) => {
 });
 
 router.get('/servicos/:id?', (req, res) => {
-  //let filter = " ";
-  //if (req.params.id) filter="WHERE idservicos=" + parseInt(req.params.id);
   execSQLQuery(
     'SELECT * FROM servicos WHERE idservicos=' + parseInt(req.params.id),
     res,
@@ -60,8 +58,6 @@ router.get('/usuarios', (req, res) => {
 });
 
 router.get('/usuarios/:id?', (req, res) => {
-  //let filter = " ";
-  //if (req.params.id) filter="WHERE idusuarios=" + parseInt(req.params.id);
   execSQLQuery(
     'SELECT * FROM usuarios WHERE idusuarios=' + parseInt(req.params.id),
     res,
@@ -96,9 +92,10 @@ router.post('/usuarios/login', (req, res, err) => {
 
 // API DE SERVIÇOS ATIVOS
 
-router.post('servicos/usuarios', (req, res, err) => {
+router.get('/servicos/:id?', (req, res, err) => {
   const { idusuarios } = req.body;
   execSQLQuery(
-    `SELECT * FROM usuarios_has_servicos WHERE usuarios_idusuarios = '${idusuarios}'`,
+    'SELECT * FROM usuarios_has_servicos WHERE usuarios_idusuarios =' +
+      parseInt(req.params.idusuarios),
   );
 });

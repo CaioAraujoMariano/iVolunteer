@@ -12,13 +12,15 @@ function App() {
   if (user === undefined || !user) {
     return (
       <BrowserRouter>
-        <Route exact path="/" component={Home} />
-        <Route path="*" component={NotFound} />
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route path="*" component={NotFound} />
+        </Switch>
       </BrowserRouter>
     );
   } else if (user) {
-    let nivel_usuario = localStorage.getItem('id');
-    if (nivel_usuario === 0) {
+    let nivel_usuario = localStorage.getItem('nivel_usuario');
+    if (nivel_usuario == '0') {
       // Se for voluntário
       return (
         <BrowserRouter>
@@ -26,6 +28,7 @@ function App() {
             <Route exact path="/" component={Home} />
             <Route path="/meus-servicos" component={MyServicesVolunteer} />
             <Route path="/status-services" component={StatusServices} />
+            <Route path="/servicos-disponiveis" component={AvailableServices} />
             <Route path="*" component={NotFound} />
           </Switch>
         </BrowserRouter>
@@ -36,9 +39,8 @@ function App() {
         <BrowserRouter>
           <Switch>
             <Route exact path="/" component={Home} />
-            <Route path="/meus-servicos" component={MyServices} />
+            <Route path="/meus-servicos-vulneravel" component={MyServices} />
             <Route path="/status-services" component={StatusServices} />
-            <Route path="/servicos-disponiveis" component={AvailableServices} />
             <Route path="*" component={NotFound} />
           </Switch>
         </BrowserRouter>

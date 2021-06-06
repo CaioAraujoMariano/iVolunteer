@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import '../scss/ActiveServices.scss';
 import Button from './Button';
 import NewServiceModal from './Modal/NewServiceModal';
+import axios from 'axios';
 
 const ActiveServices = () => {
   const [newServiceShow, setNewServiceShow] = React.useState('');
@@ -26,6 +27,14 @@ const ActiveServices = () => {
     }
   }
 
+  useEffect(() => {
+    let id_usuario = localStorage.getItem('id');
+    console.log(id_usuario);
+    axios.get(`http://localhost:8000/servicos/${id_usuario}`).then((resp) => {
+      console.log('dados', resp.data);
+    });
+  }, []);
+
   return (
     <div className="activeServices-container">
       <div onClick={showNewServiceModal}>
@@ -46,7 +55,6 @@ const ActiveServices = () => {
             >
               Ver Detalhes
             </button>
-
           </li>
           <li>
             <p>
