@@ -95,3 +95,10 @@ router.post('/usuarios/login', (req, res, err) => {
 });
 
 // API DE SERVIÇOS ATIVOS
+
+router.post('servicos/usuarios', (req, res, err) => {
+  const { idusuarios } = req.body;
+  execSQLQuery(
+    `SELECT * FROM usuarios_has_servicos WHERE usuarios_idusuarios = '${idusuarios}'`,
+  );
+});
