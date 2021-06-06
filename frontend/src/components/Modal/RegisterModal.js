@@ -47,6 +47,7 @@ const RegisterModal = ({ modalRef, className }) => {
         data_nascimento: date,
         nivel_usuario: parseInt(profile),
         senha: password,
+        endereco: address,
       })
       .then((resp) => {
         console.log(resp.data);

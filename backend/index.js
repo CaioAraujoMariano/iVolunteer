@@ -78,15 +78,8 @@ router.post('/usuarios', (req, res, err) => {
   const nivel_usuario = req.body.nivel_usuario;
   const endereco = req.body.endereco;
   execSQLQuery(
-    `INSERT INTO usuarios(nome, cpf, telefone, data_nascimento, senha, nivel_usuario) VALUES('${nome}', '${cpf}', '${telefone}', '${data_nascimento}', '${senha}', '${nivel_usuario}')`,
+    `INSERT INTO usuarios(nome, cpf, telefone, data_nascimento, senha, nivel_usuario, endereco) VALUES('${nome}', '${cpf}', '${telefone}', '${data_nascimento}', '${senha}', '${nivel_usuario}', '${endereco}')`,
     res,
-  ).then(
-    execSQLQuery('SELECT * FROM usuarios', res).then(
-      execSQLQuery(
-        `INSERT INTO enderecos(nome, cpf, telefone, data_nascimento, senha, nivel_usuario) VALUES('${nome}', '${cpf}', '${telefone}', '${data_nascimento}', '${senha}', '${nivel_usuario}')`,
-        res,
-      ),
-    ),
   );
   console.log(err);
 });
