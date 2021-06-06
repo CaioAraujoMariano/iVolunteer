@@ -102,3 +102,12 @@ router.post('/usuarios/login', (req, res, err) => {
 });
 
 // API DE SERVIÇOS ATIVOS
+
+router.post('servicos/usuarios', (req, res, err) => {
+  const { nome, descricao, limite, status } = req.body;
+  execSQLQuery(
+    `SELECT * FROM servicos WHERE idservicos = '${idservicos}' AND idusuarios = '${idusuarios}'`
+  )
+});
+
+

@@ -41,13 +41,26 @@ const ActiveServices = () => {
             <p>
               <span>Serviço:</span> Ajuda no mercado
             </p>
-            <button>Ver Detalhes</button>
+            <button
+              onClick={() => {
+                window.location.href = '/status-services';
+              }}
+            >
+              Ver Detalhes
+            </button>
+
           </li>
           <li>
             <p>
               <span>Serviço:</span> Levar pet pra passear
             </p>
-            <button>Ver Detalhes</button>
+            <button
+              onClick={() => {
+                window.location.href = '/status-services';
+              }}
+            >
+              Ver Detalhes
+            </button>
           </li>
           <li>
             <p>
