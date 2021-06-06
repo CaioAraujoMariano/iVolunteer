@@ -15,13 +15,11 @@ const Home = () => {
   const modalRef = useRef(null);
 
   const showRegisterModal = () => {
-    console.log('show');
     setRegisterShow('show');
     onClickClose();
   };
 
   const showLoginModal = () => {
-    console.log('show');
     setLoginShow('show');
     onClickClose();
   };
@@ -37,7 +35,6 @@ const Home = () => {
       setCloseButton('');
     } else {
       setCloseButton('show');
-      console.log('mostrando');
     }
   }
 

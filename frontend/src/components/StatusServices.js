@@ -12,7 +12,6 @@ const StatusServices = () => {
   const modalRef = useRef(null);
 
   const showNewServiceModal = () => {
-    console.log('show');
     setNewServiceShow('show');
     onClickClose();
   };
@@ -27,7 +26,6 @@ const StatusServices = () => {
       setCloseButton('');
     } else {
       setCloseButton('show');
-      console.log('mostrando');
     }
   }
 

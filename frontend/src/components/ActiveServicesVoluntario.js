@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import '../scss/ActiveServicesVoluntario.scss'
+import '../scss/ActiveServicesVoluntario.scss';
 import Button from './Button';
 import ViewDetails from './Modal/ViewDetailsModal';
 
@@ -9,7 +9,6 @@ const ActiveServicesVoluntario = () => {
   const modalRef = useRef(null);
 
   const showViewDetailsModal = () => {
-    console.log('show');
     setDetailsShow('show');
     onClickClose();
   };
@@ -24,7 +23,6 @@ const ActiveServicesVoluntario = () => {
       setCloseButton('');
     } else {
       setCloseButton('show');
-      console.log('mostrando');
     }
   }
 
@@ -53,7 +51,12 @@ const ActiveServicesVoluntario = () => {
               <p>
                 <span>Serviço:</span> Levar no dentista
               </p>
-              <button onClick={showViewDetailsModal} className="botao-servicos-disponiveis">Ver Detalhes</button>
+              <button
+                onClick={showViewDetailsModal}
+                className="botao-servicos-disponiveis"
+              >
+                Ver Detalhes
+              </button>
             </li>
           </ul>
         </div>
