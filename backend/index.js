@@ -10,7 +10,6 @@ app.use(bodyParser.json());
 app.use(cors());
 //inicia o servidor
 app.listen(port, function () {
-  console.log('host certo');
 });
 
 const router = express.Router();
@@ -21,7 +20,6 @@ app.use('/', router);
 
 router.get('/servicos', (req, res) => {
   execSQLQuery('SELECT * FROM servicos', res);
-  console.log('aqui');
 });
 
 router.get('/servicos/:id?', (req, res) => {
@@ -43,14 +41,14 @@ router.post('/servicos', (req, res) => {
   );
 });
 
-router.put('/servicos/:id', (req, res) => {
-  const id = parseInt(req.params.id);
-  const status = req.body.status;
-  execSQLQuery(
-    `UPDATE servicos SET status="${status}" WHERE idservicos = "${id}"`,
-    res,
-  );
-});
+// router.put('/servicos/:id', (req, res) => {
+//   const id = parseInt(req.params.id);
+//   const status = req.body.status;
+//   execSQLQuery(
+//     `UPDATE servicos SET status="${status}" WHERE idservicos = "${id}"`,
+//     res,
+//   );
+// });
 
 // APIS DE USUARIOS
 
@@ -66,7 +64,6 @@ router.get('/usuarios/:id?', (req, res) => {
 });
 
 router.post('/usuarios', (req, res, err) => {
-  console.log(err);
   const nome = req.body.nome;
   const cpf = req.body.cpf;
   const telefone = req.body.telefone;
@@ -78,7 +75,6 @@ router.post('/usuarios', (req, res, err) => {
     `INSERT INTO usuarios(nome, cpf, telefone, data_nascimento, senha, nivel_usuario, endereco) VALUES('${nome}', '${cpf}', '${telefone}', '${data_nascimento}', '${senha}', '${nivel_usuario}', '${endereco}')`,
     res,
   );
-  console.log(err);
 });
 
 // API DE LOGIN
@@ -102,3 +98,11 @@ router.post('/servicos/voluntario', (req, res, err) => {
   const { id } = req.body;
   execSQLQuery(`SELECT * FROM servicos WHERE id_voluntario = '${id}'`, res);
 });
+
+// API DE ATUALIZAR STATUS DO SERVICOS
+
+router.put('/servicos/:id?', (req, res, err) => {
+  const { id_voluntario } = req.body;
+
+  execSQLQuery(`UPDATE servicos SET id_voluntario = '${id_voluntario}' WHERE idservicos = '${req.params.id}'`, res);
+})
