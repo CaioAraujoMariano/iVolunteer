@@ -1,45 +1,35 @@
 .status-container {
+  font-family: Roboto, 'Helvetica Neue';
   border-radius: 100px;
   background-color: white;
-  width: 800px;
+  max-width: 30%;
   height: 350px;
   position: relative;
   display: flex;
   margin-left: 980px;
   margin-top: 20px;
-  align-items: center;
   justify-content: center;
   box-shadow: 10px 5px 5px gray;
-
-  .status-content1 {
-    border-radius: 50px;
-    background-color: #c4c4c4;
-    width: 100px;
-    height: 100px;
+  display: flex;
+  flex-direction: column;
+  padding: 50px;
+  justify-content: left;
+  font-size: 30px;
+  .title,
+  .description,
+  .limite,
+  .status {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    span {
+      font-weight: bolder;
+      color: #3cb2cc;
+      margin-right: 20px;
+    }
   }
 
-  .status-content2 {
-    border-radius: 50px;
-    margin-left: 40px;
-    background-color: #c4c4c4;
-    width: 100px;
-    height: 100px;
-  }
-
-  .status-content3 {
-    border-radius: 50px;
-    margin-left: 40px;
-    background-color: #c4c4c4;
-    width: 100px;
-    height: 100px;
-  }
-
-  .status-content4 {
-    border-radius: 50px;
-    margin-left: 40px;
-    background-color: #c4c4c4;
-    width: 100px;
-    height: 100px;
+  .status {
+    display: flex;
   }
 }
 
@@ -64,26 +54,6 @@
     margin-left: 10px;
     margin-top: 20px;
     padding: 10px;
-
-    .status-content1 {
-      width: 130px;
-      height: 65px;
-    }
-
-    .status-content2 {
-      width: 130px;
-      height: 65px;
-    }
-
-    .status-content3 {
-      width: 130px;
-      height: 65px;
-    }
-
-    .status-content4 {
-      width: 130px;
-      height: 65px;
-    }
   }
 
   .p_status {

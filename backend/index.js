@@ -36,8 +36,9 @@ router.post('/servicos', (req, res) => {
   const descricao = req.body.descricao;
   const limite = req.body.limite;
   const status = req.body.status;
+  const id_vulneravel = req.body.id_vulneravel;
   execSQLQuery(
-    `INSERT INTO servicos(nome, descricao, limite, status) VALUES('${nome}', '${descricao}', '${limite}', '${status}')`,
+    `INSERT INTO servicos(nome, descricao, limite, status, id_vulneravel) VALUES('${nome}', '${descricao}', '${limite}', '${status}', '${id_vulneravel}')`,
     res,
   );
 });
@@ -90,12 +91,14 @@ router.post('/usuarios/login', (req, res, err) => {
   );
 });
 
-// API DE SERVIÇOS ATIVOS
+// API DE SERVIÇOS POR USUARIO
 
-router.get('/servicos/:id?', (req, res, err) => {
-  const { idusuarios } = req.body;
-  execSQLQuery(
-    'SELECT * FROM usuarios_has_servicos WHERE usuarios_idusuarios =' +
-      parseInt(req.params.idusuarios),
-  );
+router.post('/servicos/usuario', (req, res, err) => {
+  const { id } = req.body;
+  execSQLQuery(`SELECT * FROM servicos WHERE id_vulneravel = '${id}'`, res);
+});
+
+router.post('/servicos/voluntario', (req, res, err) => {
+  const { id } = req.body;
+  execSQLQuery(`SELECT * FROM servicos WHERE id_voluntario = '${id}'`, res);
 });

@@ -1,44 +1,24 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import '../scss/ActiveServicesVoluntario.scss';
 import Button from './Button';
 import ViewDetails from './Modal/ViewDetailsModal';
-
-/*
-const AvailableServices = () => {
-  const [servicos, setServicos] = React.useState([]);
-
-  useEffect(() => {
-    fetch('http://localhost:8000/servicos/usuarios/id')
-      .then((res) => res.json())
-      .then((result) => {
-        setServicos(result);
-      });
-  }, []);
-  
-*/
+import axios from 'axios';
 
 const ActiveServicesVoluntario = () => {
-  const [detailsShow, setDetailsShow] = React.useState('');
-  const [closeButton, setCloseButton] = React.useState('');
-  const modalRef = useRef(null);
+  const [services, setServices] = React.useState([]);
 
-  const showViewDetailsModal = () => {
-    setDetailsShow('show');
-    onClickClose();
-  };
+  useEffect(() => {
+    let id_voluntario = localStorage.getItem('id');
+    axios
+      .post(`http://localhost:8000/servicos/voluntario`, {
+        id: id_voluntario,
+      })
+      .then((resp) => {
+        setServices(resp.data);
+      });
+  }, []);
 
-  const closeModalFunction = (event) => {
-    setDetailsShow('');
-    setCloseButton('');
-  };
-
-  function onClickClose() {
-    if (setDetailsShow === '') {
-      setCloseButton('');
-    } else {
-      setCloseButton('show');
-    }
-  }
+  console.log('services', services);
 
   return (
     <>
@@ -48,50 +28,28 @@ const ActiveServicesVoluntario = () => {
         </Button>
         <h2>Serviços ativos</h2>
         <div className="servicesList">
-          <ul>
-            <li>
-              <p>
-                <span>Serviço:</span> Ajuda no mercado
-              </p>
-              <button
-                onClick={showViewDetailsModal}
-                className="botao-servicos-disponiveis"
-              >
-                Ver Detalhes
-              </button>
-            </li>
-            <li>
-              <p>
-                <span>Serviço:</span> Levar pet pra passear
-              </p>
-              <button
-                onClick={showViewDetailsModal}
-                className="botao-servicos-disponiveis"
-              >
-                Ver Detalhes
-              </button>
-            </li>
-            <li>
-              <p>
-                <span>Serviço:</span> Levar no dentista
-              </p>
-              <button
-                onClick={showViewDetailsModal}
-                className="botao-servicos-disponiveis"
-              >
-                Ver Detalhes
-              </button>
-            </li>
-          </ul>
-        </div>
-        <div className="modals">
-          <ViewDetails className={detailsShow} modalRef={modalRef} />
-          <div
-            className={`${closeButton} closeModal`}
-            onClick={closeModalFunction}
-          >
-            X
-          </div>
+          {services.length > 0 ? (
+            <ul>
+              {services.map((item) => {
+                return (
+                  <li>
+                    <p>
+                      <span>Serviço:</span> {item.nome}
+                    </p>
+                    <button
+                      onClick={() => {
+                        window.location.href = `/status-services/${item.idservicos}`;
+                      }}
+                    >
+                      Ver Detalhes
+                    </button>
+                  </li>
+                );
+              })}
+            </ul>
+          ) : (
+            <h2 className="no-service">Você não tem nenhum serviço ativo ;(</h2>
+          )}
         </div>
       </div>
     </>

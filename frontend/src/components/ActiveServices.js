@@ -7,6 +7,7 @@ import axios from 'axios';
 const ActiveServices = () => {
   const [newServiceShow, setNewServiceShow] = React.useState('');
   const [closeButton, setCloseButton] = React.useState('');
+  const [services, setServices] = React.useState([]);
   const modalRef = useRef(null);
 
   const showNewServiceModal = () => {
@@ -28,59 +29,47 @@ const ActiveServices = () => {
   }
 
   useEffect(() => {
-    let id_usuario = localStorage.getItem('id');
-    console.log(id_usuario);
-    axios.get(`http://localhost:8000/servicos/${id_usuario}`).then((resp) => {
-      console.log('dados', resp.data);
-    });
+    let id_vulneravel = localStorage.getItem('id');
+    axios
+      .post(`http://localhost:8000/servicos/usuario`, {
+        id: id_vulneravel,
+      })
+      .then((resp) => {
+        setServices(resp.data);
+      });
   }, []);
+
+  console.log('services', services);
 
   return (
     <div className="activeServices-container">
       <div onClick={showNewServiceModal}>
         <Button bgColor="#FFF500">Novo Serviço</Button>
       </div>
-
       <h2>Serviços ativos</h2>
       <div className="servicesList">
-        <ul>
-          <li>
-            <p>
-              <span>Serviço:</span> Ajuda no mercado
-            </p>
-            <button
-              onClick={() => {
-                window.location.href = '/status-services';
-              }}
-            >
-              Ver Detalhes
-            </button>
-          </li>
-          <li>
-            <p>
-              <span>Serviço:</span> Levar pet pra passear
-            </p>
-            <button
-              onClick={() => {
-                window.location.href = '/status-services';
-              }}
-            >
-              Ver Detalhes
-            </button>
-          </li>
-          <li>
-            <p>
-              <span>Serviço:</span> Levar no dentista
-            </p>
-            <button
-              onClick={() => {
-                window.location.href = '/status-services';
-              }}
-            >
-              Ver Detalhes
-            </button>
-          </li>
-        </ul>
+        {services.length > 0 ? (
+          <ul>
+            {services.map((item) => {
+              return (
+                <li>
+                  <p>
+                    <span>Serviço:</span> {item.nome}
+                  </p>
+                  <button
+                    onClick={() => {
+                      window.location.href = `/status-services/${item.idservicos}`;
+                    }}
+                  >
+                    Ver Detalhes
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
+        ) : (
+          <h2 className="no-service">Você não tem nenhum serviço ativo ;(</h2>
+        )}
       </div>
       <div className="modals">
         <NewServiceModal className={newServiceShow} modalRef={modalRef} />

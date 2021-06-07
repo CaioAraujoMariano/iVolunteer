@@ -20,14 +20,18 @@ const NewServiceModal = ({ modalRef, className }) => {
   };
 
   const sendService = () => {
+    let id_vulneravel = localStorage.getItem('id');
     axios
       .post('http://localhost:8000/servicos', {
         nome: nome,
         descricao: description,
         data_limite: limit,
+        id_vulneravel: id_vulneravel,
       })
       .then((resp) => {
         console.log(resp.data);
+        alert('Serviço cadastrado com sucesso!');
+        window.reload();
       });
   };
 
