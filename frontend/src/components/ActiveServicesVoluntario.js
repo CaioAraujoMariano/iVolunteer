@@ -18,27 +18,6 @@ const AvailableServices = () => {
 */
 
 const ActiveServicesVoluntario = () => {
-  const [detailsShow, setDetailsShow] = React.useState('');
-  const [closeButton, setCloseButton] = React.useState('');
-  const modalRef = useRef(null);
-
-  const showViewDetailsModal = () => {
-    setDetailsShow('show');
-    onClickClose();
-  };
-
-  const closeModalFunction = (event) => {
-    setDetailsShow('');
-    setCloseButton('');
-  };
-
-  function onClickClose() {
-    if (setDetailsShow === '') {
-      setCloseButton('');
-    } else {
-      setCloseButton('show');
-    }
-  }
 
   return (
     <>
@@ -54,7 +33,9 @@ const ActiveServicesVoluntario = () => {
                 <span>Serviço:</span> Ajuda no mercado
               </p>
               <button
-                onClick={showViewDetailsModal}
+                onClick={() => {
+                  window.location.href = '/status-services';
+                }}
                 className="botao-servicos-disponiveis"
               >
                 Ver Detalhes
@@ -65,7 +46,9 @@ const ActiveServicesVoluntario = () => {
                 <span>Serviço:</span> Levar pet pra passear
               </p>
               <button
-                onClick={showViewDetailsModal}
+                onClick={() => {
+                  window.location.href = '/status-services';
+                }}
                 className="botao-servicos-disponiveis"
               >
                 Ver Detalhes
@@ -76,22 +59,15 @@ const ActiveServicesVoluntario = () => {
                 <span>Serviço:</span> Levar no dentista
               </p>
               <button
-                onClick={showViewDetailsModal}
+                onClick={() => {
+                  window.location.href = '/status-services';
+                }}
                 className="botao-servicos-disponiveis"
               >
                 Ver Detalhes
               </button>
             </li>
           </ul>
-        </div>
-        <div className="modals">
-          <ViewDetails className={detailsShow} modalRef={modalRef} />
-          <div
-            className={`${closeButton} closeModal`}
-            onClick={closeModalFunction}
-          >
-            X
-          </div>
         </div>
       </div>
     </>
