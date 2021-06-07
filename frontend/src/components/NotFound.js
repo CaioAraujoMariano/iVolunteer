@@ -8,9 +8,9 @@ const NotFound = () => {
   return (
     <div>
       <Header />
-      <div class class="not-found-container">
+      <div className="not-found-container">
         <div className="not-found-content">
-        <img src={BackgroundImage}/>
+        <img src={BackgroundImage} alt='Imagem De Fundo'/>
           <span>Oops...</span>
           <p>
             <span>404</span>Página não encontrada

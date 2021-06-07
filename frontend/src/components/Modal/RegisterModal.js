@@ -49,9 +49,6 @@ const RegisterModal = ({ modalRef, className }) => {
         senha: password,
         endereco: address,
       })
-      .then((resp) => {
-        console.log(resp.data);
-      });
   };
 
   return (

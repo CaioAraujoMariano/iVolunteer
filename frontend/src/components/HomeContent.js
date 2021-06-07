@@ -8,8 +8,8 @@ const HomeContent = ({ onClickFunction }) => {
   return (
     <div className="home-content">
       <p>Seja um voluntário e ajude as pessoas ;)</p>
-      <img src={HomeImage2} className="home-image2" />
-      <img src={HomeImage1} className="home-image1" />
+      <img src={HomeImage2} className="home-image2" alt='Imagem de Elipse'/>
+      <img src={HomeImage1} className="home-image1" alt='Imagem de Elipse'/>
       <div onClick={onClickFunction}>
         <Button
           href="#"

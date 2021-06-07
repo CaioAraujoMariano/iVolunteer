@@ -27,7 +27,7 @@ function App() {
           <Switch>
             <Route exact path="/" component={Home} />
             <Route path="/meus-servicos" component={MyServicesVolunteer} />
-            <Route path="/status-services" component={StatusServices} />
+            <Route path="/status-services/:id" component={StatusServices} />
             <Route path="/servicos-disponiveis" component={AvailableServices} />
             <Route path="*" component={NotFound} />
           </Switch>
@@ -40,7 +40,7 @@ function App() {
           <Switch>
             <Route exact path="/" component={Home} />
             <Route path="/meus-servicos-vulneravel" component={MyServices} />
-            <Route path="/status-services" component={StatusServices} />
+            <Route path="/status-services/:id" component={StatusServices} />
             <Route path="*" component={NotFound} />
           </Switch>
         </BrowserRouter>
