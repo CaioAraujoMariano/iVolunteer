@@ -20,7 +20,7 @@ const ActiveServicesVoluntario = () => {
 
   return (
     <>
-      <div className="activeServices-container">
+      <div className="activeServices-volunteer-container">
         <Button bgColor="#FFF500" href="./servicos-disponiveis">
           Serviços Disponíveis
         </Button>

@@ -54,14 +54,17 @@ const ActiveServices = () => {
                   <p>
                     <span>Serviço:</span> {item.nome}
                   </p>
-                  <button className="button-deleteService">Excluir</button>
-                  <button className="button-viewDetails"
-                    onClick={() => {
-                      window.location.href = `/status-services/${item.idservicos}`;
-                    }}
-                  >
-                    Ver Detalhes
-                  </button>
+                  <div className="service-buttons">
+                    <button
+                      className="button-viewDetails"
+                      onClick={() => {
+                        window.location.href = `/status-services/${item.idservicos}`;
+                      }}
+                    >
+                      Ver Detalhes
+                    </button>
+                    <button className="button-deleteService">Excluir</button>
+                  </div>
                 </li>
               );
             })}
