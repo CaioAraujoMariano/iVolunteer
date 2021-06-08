@@ -102,7 +102,15 @@ router.post('/servicos/voluntario', (req, res, err) => {
 // API DE ATUALIZAR STATUS DO SERVICOS
 
 router.put('/servicos/:id?', (req, res, err) => {
-  const { id_voluntario } = req.body;
+  const { id_voluntario} = req.body;
 
-  execSQLQuery(`UPDATE servicos SET id_voluntario = '${id_voluntario}' WHERE idservicos = '${req.params.id}'`, res);
+  execSQLQuery(`UPDATE servicos SET id_voluntario = '${id_voluntario}'WHERE idservicos = '${req.params.id}'`, res);
+})
+
+//API DE DELETAR SERVIÇOS
+
+router.delete('/servicos/:id?', (req, res, err) => {
+  const { id_voluntario} = req.body;
+
+  execSQLQuery(`DELETE FROM servicos WHERE idservicos = '${req.params.id}'`, res);
 })
