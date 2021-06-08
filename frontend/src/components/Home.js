@@ -108,10 +108,10 @@ const Home = () => {
       <Header />
       <div className="container-fluid mt-5">
         <div className="row pt-5 pb-5">
-          <div className="col-sm-12 col-md-6 d-flex justify-content-end mt-5">
+          <div className="col-xs-12 col-md-6 d-flex justify-content-end mt-5">
             <Background title="Seja um voluntário e ajude as pessoas ;)" />
           </div>
-          <div className="col-sm-12 col-md-6 d-flex justify-content-end mt-5">
+          <div className="col-xs-12 col-md-6 d-flex justify-content-end mt-5">
             <div className="CTAButtons mt-5">
               <div onClick={handleLoginShow}>
                 <Button bgColor="#FFFFFF">Login</Button>

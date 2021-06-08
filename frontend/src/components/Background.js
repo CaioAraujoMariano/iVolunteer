@@ -9,7 +9,7 @@ const Background = ({ title, children }) => {
         <div className="row">
           <div className="col-12 d-flex justify-content-center position-relative">
             <img src={BackgroundImage} />
-            <p className="position-absolute title">{title}</p>
+            <p className="position-absolute title d-none d-md-flex">{title}</p>
             <p className="position-absolute top-50">{children}</p>
           </div>
         </div>

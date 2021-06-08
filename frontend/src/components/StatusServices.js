@@ -96,7 +96,7 @@ const StatusServices = () => {
                       </div>
                       <div className="limite">
                         <span>Data limite:</span>
-                        {item.limite}
+                        {item.limite.substring(0,10)}
                       </div>
                       <div className="status">
                         <span>Status:</span>

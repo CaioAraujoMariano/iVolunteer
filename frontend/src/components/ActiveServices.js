@@ -30,7 +30,7 @@ const ActiveServices = () => {
       .post('http://localhost:8000/servicos', {
         nome: nome,
         descricao: description,
-        data_limite: limit,
+        limite: limit,
         id_vulneravel: id_vulneravel,
       })
       .then((resp) => {
