@@ -87,7 +87,9 @@ const StatusServices = () => {
               {item.status === 'Ativo' && <p>Em andamento</p>}
               {item.status === 'Finalizado' && <p>Finalizado</p>}
             </div>
-            <button className='button-finalizarServico'>Finalizar Serviço</button>
+            {nivel_usuario == 0 &&
+              <button className='button-finalizarServico'>Finalizar Serviço</button>
+            }
           </div>
         );
       })}
