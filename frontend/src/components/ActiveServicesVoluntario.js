@@ -1,7 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import '../scss/ActiveServicesVoluntario.scss';
 import Button from './Button';
-import ViewDetails from './Modal/ViewDetailsModal';
 import axios from 'axios';
 
 const ActiveServicesVoluntario = () => {
@@ -21,33 +20,57 @@ const ActiveServicesVoluntario = () => {
   return (
     <>
       <div className="activeServices-volunteer-container">
-        <Button bgColor="#FFF500" href="./servicos-disponiveis">
-          Serviços Disponíveis
-        </Button>
-        <h2>Serviços Ativos</h2>
-        <div className="servicesList">
-          {services.length > 0 ? (
-            <ul>
-              {services.map((item) => {
-                return (
-                  <li>
-                    <p>
-                      <span>Serviço:</span> {item.nome}
-                    </p>
-                    <button
-                      onClick={() => {
-                        window.location.href = `/status-services/${item.idservicos}`;
-                      }}
-                    >
-                      Ver Detalhes
-                    </button>
-                  </li>
-                );
-              })}
-            </ul>
-          ) : (
-            <h2 className="no-service">Você não tem nenhum serviço ativo ;(</h2>
-          )}
+        <div className="row">
+          <div className="col-12 d-flex justify-content-end mt-5 pt-5 mb-5">
+            <Button bgColor="#FFF500" href="./servicos-disponiveis">
+              Serviços Disponíveis
+            </Button>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-12 d-flex justify-content-center mt-3">
+            <h2>Serviços Ativos</h2>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-12">
+            <div className="servicesList">
+              {services.length > 0 ? (
+                <ul class="list-group list-group-flush">
+                  {services.map((item) => {
+                    return (
+                      <li class="list-group-item">
+                        <div className="col-6 d-flex justify-content-start">
+                          <p classname="align-start">
+                            <span>Serviço:</span> {item.nome}
+                          </p>
+                        </div>
+                        <div className="col-6 d-flex-justify-content-end">
+                          <div className="service-buttons">
+                            <button
+                              className="button-viewDetails"
+                              onClick={() => {
+                                window.location.href = `/status-services/${item.idservicos}`;
+                              }}
+                            >
+                              Ver Detalhes
+                            </button>
+                            <button className="button-deleteService">
+                              Excluir
+                            </button>
+                          </div>
+                        </div>
+                      </li>
+                    );
+                  })}
+                </ul>
+              ) : (
+                <h2 className="no-service">
+                  Você não tem nenhum serviço ativo ;(
+                </h2>
+              )}
+            </div>
+          </div>
         </div>
       </div>
     </>

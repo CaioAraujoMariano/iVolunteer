@@ -1,126 +1,45 @@
 .service-card-container {
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-}
-
-.service-card-container {
-  height: 100%;
   margin-top: 100px;
 
-  .service-card {
-    align-items: center;
-    justify-content: center;
-    border-radius: 20px 5px 5px 20px;
-    background-color: #ffffff;
-    box-shadow: 10px 5px 5px gray;
-    height: 25vh;
-    padding: 20px;
+  .serviceCard {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
       Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    margin-bottom: 20px;
+    box-shadow: 1px 1px 1px grey;
+    transition: 0.2s ease-in-out;
 
-    .service-card-title {
-      display: flex;
-      justify-content: center;
-      padding: 10px;
-      font-size: 25px;
-      margin-top: 10px;
-
-      h3 {
-        color: black;
-        font-weight: bold;
-        padding-right: 10px;
-      }
-
-      p {
-        color: #3cb2cc;
-        font-weight: 500;
-      }
+    &:hover {
+      box-shadow: 5px 5px 10px grey;
     }
 
-    .service-card-content {
-      font-size: 20px;
+    .serviceCardTitle {
+      font-weight: 600;
+      font-size: 18px;
+    }
+
+    .serviceTitle {
+      color: #3cb2cc;
+      text-transform: uppercase;
+      font-weight: bold;
+      font-size: 22px;
+    }
+
+    .serviceDescription {
+      font-weight: lighter;
+      font-size: 18px;
       margin-top: 20px;
-      margin-left: 50px;
-      margin-right: 20px;
-      margin-bottom: 10px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+    }
 
-      .button-voluntario {
-        display: block;
-        cursor: pointer;
-        background: #39c136;
-        border-radius: 20px 20px 20px 20px;
-        padding: 10px;
-        padding-left: 50px;
-        padding-right: 50px;
-        color: #ffffff;
-        font-size: 20px;
-        border: hidden;
-        margin-right: 30px;
-        margin-top: 80px;
-        transition: 0.2s ease-in-out;
+    .confirmationButton {
+      width: 100%;
+      margin-top: 30px;
+      text-transform: uppercase;
+      font-weight: 600;
+      background-color: #39c136;
+      border: none;
 
-        &:hover {
-          box-shadow: 2px 2px 2px grey;
-        }
+      &:hover {
+        background-color: #238621;
       }
     }
   }
 }
-
-.modals {
-  display: flex;
-  justify-content: center;
-}
-
-.closeModal {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  font-weight: bold;
-  color: red;
-  position: relative;
-  top: -150px;
-  left: 7%;
-  display: none;
-  z-index: 99999999999;
-  transition: 0.2s ease-in-out;
-
-  &:hover {
-    text-shadow: 1px 1px 1px grey;
-    cursor: pointer;
-  }
-
-  &.show {
-    display: flex;
-  }
-}
-
-@media (max-width: 1200px) {
-  .service-card-container {
-    margin: 0;
-    margin-bottom: 100px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    height: auto;
-
-    .service-card {
-      height: 30vh;
-      width: 80%;
-      padding: 10px;
-      margin-top: 20px;
-      margin-left: 30px;
-
-      .service-card-content {
-        .button-voluntario {
-          margin-top: 20px;
-        }
-      }
-    }
-  }
-}
-

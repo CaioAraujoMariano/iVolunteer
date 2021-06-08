@@ -5,33 +5,48 @@ import Header from './Header';
 import Background from './Background';
 import Button from './Button';
 import Footer from './Footer';
-import NewServiceModal from './Modal/NewServiceModal';
+import Modal from 'react-bootstrap/Modal';
+import axios from 'axios';
 
 const StatusServices = () => {
-  const nivel_usuario = localStorage.getItem('nivel_usuario')
-  const [newServiceShow, setNewServiceShow] = React.useState('');
+  const nivel_usuario = localStorage.getItem('nivel_usuario');
   const [service, setServicos] = React.useState([]);
-  const [closeButton, setCloseButton] = React.useState('');
-  const modalRef = useRef(null);
+  const [show, setShow] = React.useState(false);
+  const [services, setServices] = React.useState([]);
+  const [nome, setNome] = React.useState('');
+  const [description, setDescription] = React.useState('');
+  const [limit, setLimit] = React.useState('');
   const { id } = useParams();
 
-  const showNewServiceModal = () => {
-    setNewServiceShow('show');
-    onClickClose();
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  const myChangeHandlerName = (event) => {
+    setNome(event.target.value);
   };
 
-  const closeModalFunction = (event) => {
-    setNewServiceShow('');
-    setCloseButton('');
+  const myChangeHandlerDescription = (event) => {
+    setDescription(event.target.value);
   };
 
-  function onClickClose() {
-    if (setNewServiceShow === '') {
-      setCloseButton('');
-    } else {
-      setCloseButton('show');
-    }
-  }
+  const myChangeHandlerLimit = (event) => {
+    setLimit(event.target.value);
+  };
+
+  const sendService = () => {
+    let id_vulneravel = localStorage.getItem('id');
+    axios
+      .post('http://localhost:8000/servicos', {
+        nome: nome,
+        descricao: description,
+        data_limite: limit,
+        id_vulneravel: id_vulneravel,
+      })
+      .then((resp) => {
+        alert('Serviço cadastrado com sucesso!');
+        window.location.reload();
+      });
+  };
 
   useEffect(() => {
     fetch(`http://localhost:8000/servicos/${id}`)
@@ -44,64 +59,108 @@ const StatusServices = () => {
   return (
     <div className="status-services-container">
       <Header />
-      <Background title="Olá Fulano!">
-        Acompanhe os seus serviços ativos ;)
-      </Background>
-      <div className="CTAButtons">
-        {nivel_usuario == 1 &&
-          <div onClick={showNewServiceModal}>
-            <Button bgColor="#FFF500">Novo Serviço</Button>
+      <div className="container-fluid mt-5">
+        <div className="row pt-5 pb-5">
+          <div className="col-sm-12 col-md-6 d-flex justify-content-end mt-5">
+            <Background title="Olá Fulano!">
+              Acompanhe os seus serviços ativos ;)
+            </Background>
           </div>
-        }
-        {nivel_usuario == 1 &&
-          <Button href="/meus-servicos-vulneravel" bgColor="#FFFFFF">
-            Meus Serviços
-          </Button>
-        }
-        {nivel_usuario == 0 &&
-          <Button href="/meus-servicos" bgColor="#FFFFFF">
-            Meus Serviços
-          </Button>
-        }
-      </div>
-      <p className="p_status">Status do Serviço</p>
-      {service.map((item) => {
-        return (
-          <div className="status-container">
-            <div className="title">
-              <span>Serviço:</span>
-              {item.nome}
+          <div className="col-sm-12 col-md-6 d-flex flex-column  mt-5">
+            <div className="row">
+              <div className="CTAButtons mt-5">
+                {nivel_usuario == 1 && (
+                  <div onClick={handleShow}>
+                    <Button bgColor="#FFF500">Novo Serviço</Button>
+                  </div>
+                )}
+                {nivel_usuario == 1 && (
+                  <Button href="/meus-servicos-vulneravel" bgColor="#FFFFFF">
+                    Meus Serviços
+                  </Button>
+                )}
+                {nivel_usuario == 0 && (
+                  <Button href="/meus-servicos" bgColor="#FFFFFF">
+                    Meus Serviços
+                  </Button>
+                )}
+              </div>
             </div>
-            <div className="description">
-              <span>Descrição:</span>
-              {item.descricao}
+            <div className="row">
+              <div className="col-12">
+                {service.map((item) => {
+                  return (
+                    <div className="status-container">
+                      <div className="title">
+                        <span>Serviço:</span>
+                        {item.nome}
+                      </div>
+                      <div className="description">
+                        <span>Descrição:</span>
+                        {item.descricao}
+                      </div>
+                      <div className="limite">
+                        <span>Data limite:</span>
+                        {item.limite}
+                      </div>
+
+                      <div className="status">
+                        <span>Status:</span>
+                        {item.status === 'undefined' && (
+                          <p>Aguardando Voluntário</p>
+                        )}
+                        {item.status === 'Ativo' && <p>Em andamento</p>}
+                        {item.status === 'Finalizado' && <p>Finalizado</p>}
+                      </div>
+                      {nivel_usuario == 0 && (
+                        <button className="button-finalizarServico">
+                          Finalizar Serviço
+                        </button>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+              <Modal show={show} onHide={handleClose}>
+                <Modal.Header closeButton>
+                  <Modal.Title>Cadastro</Modal.Title>
+                </Modal.Header>
+                <Modal.Body className="new-service-modal-container">
+                  <label htmlFor="service">Nome do Serviço ;)</label>
+                  <input
+                    type="text"
+                    id="service"
+                    placeholder="Exemplo: Compra no mercado."
+                    onChange={myChangeHandlerName}
+                  />
+                  <label htmlFor="description">Descrição:</label>
+                  <input
+                    type="text"
+                    id="description"
+                    placeholder="Escreva os detalhes específicos do serviço como: Itens, região e entre outros detalhes ;)"
+                    onChange={myChangeHandlerDescription}
+                  />
+                  <label htmlFor="date-limit">Data Limite:</label>
+                  <input
+                    type="date"
+                    id="date-limit"
+                    onChange={myChangeHandlerLimit}
+                  />
+                </Modal.Body>
+                <Modal.Footer>
+                  <button
+                    className="buttonRegisterService"
+                    onClick={sendService}
+                  >
+                    Cadastrar Novo Serviço
+                  </button>
+                </Modal.Footer>
+              </Modal>
             </div>
-            <div className="limite">
-              <span>Data limite:</span>
-              {item.limite}
-            </div>
-            
-            <div className="status">
-              <span>Status:</span>
-              {item.status === 'undefined' && <p>Aguardando Voluntário</p>}
-              {item.status === 'Ativo' && <p>Em andamento</p>}
-              {item.status === 'Finalizado' && <p>Finalizado</p>}
-            </div>
-            {nivel_usuario == 0 &&
-              <button className='button-finalizarServico'>Finalizar Serviço</button>
-            }
           </div>
-        );
-      })}
-      <div className="modals">
-        <NewServiceModal className={newServiceShow} modalRef={modalRef} />
-        <div
-          className={`${closeButton} closeModal`}
-          onClick={closeModalFunction}
-        >
-          Fechar X
         </div>
       </div>
+
       <Footer />
     </div>
   );

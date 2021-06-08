@@ -2,31 +2,42 @@ import React, { useState, useRef, useEffect } from 'react';
 import '../scss/ActiveServices.scss';
 import Button from './Button';
 import NewServiceModal from './Modal/NewServiceModal';
+import Modal from 'react-bootstrap/Modal';
 import axios from 'axios';
 
 const ActiveServices = () => {
-  const [newServiceShow, setNewServiceShow] = React.useState('');
-  const [closeButton, setCloseButton] = React.useState('');
+  const [show, setShow] = React.useState(false);
   const [services, setServices] = React.useState([]);
-  const modalRef = useRef(null);
+  const [nome, setNome] = React.useState('');
+  const [description, setDescription] = React.useState('');
+  const [limit, setLimit] = React.useState('');
 
-  const showNewServiceModal = () => {
-    setNewServiceShow('show');
-    onClickClose();
+  const myChangeHandlerName = (event) => {
+    setNome(event.target.value);
   };
 
-  const closeModalFunction = (event) => {
-    setNewServiceShow('');
-    setCloseButton('');
+  const myChangeHandlerDescription = (event) => {
+    setDescription(event.target.value);
   };
 
-  function onClickClose() {
-    if (setNewServiceShow === '') {
-      setCloseButton('');
-    } else {
-      setCloseButton('show');
-    }
-  }
+  const myChangeHandlerLimit = (event) => {
+    setLimit(event.target.value);
+  };
+
+  const sendService = () => {
+    let id_vulneravel = localStorage.getItem('id');
+    axios
+      .post('http://localhost:8000/servicos', {
+        nome: nome,
+        descricao: description,
+        data_limite: limit,
+        id_vulneravel: id_vulneravel,
+      })
+      .then((resp) => {
+        alert('Serviço cadastrado com sucesso!');
+        window.location.reload();
+      });
+  };
 
   useEffect(() => {
     let id_vulneravel = localStorage.getItem('id');
@@ -39,49 +50,91 @@ const ActiveServices = () => {
       });
   }, []);
 
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   return (
     <div className="activeServices-container">
-      <div onClick={showNewServiceModal}>
-        <Button bgColor="#FFF500">Novo Serviço</Button>
-      </div>
-      <h2>Serviços Ativos</h2>
-      <div className="servicesList">
-        {services.length > 0 ? (
-          <ul>
-            {services.map((item) => {
-              return (
-                <li>
-                  <p>
-                    <span>Serviço:</span> {item.nome}
-                  </p>
-                  <div className="service-buttons">
-                    <button
-                      className="button-viewDetails"
-                      onClick={() => {
-                        window.location.href = `/status-services/${item.idservicos}`;
-                      }}
-                    >
-                      Ver Detalhes
-                    </button>
-                    <button className="button-deleteService">Excluir</button>
-                  </div>
-                </li>
-              );
-            })}
-          </ul>
-        ) : (
-          <h2 className="no-service">Você não tem nenhum serviço ativo ;(</h2>
-        )}
-      </div>
-      <div className="modals">
-        <NewServiceModal className={newServiceShow} modalRef={modalRef} />
-        <div
-          className={`${closeButton} closeModal`}
-          onClick={closeModalFunction}
-        >
-          X
+      <div className="row">
+        <div className="col-12 d-flex justify-content-end mt-5 pt-5 mb-5">
+          <div onClick={handleShow}>
+            <Button bgColor="#FFF500">Novo Serviço</Button>
+          </div>
         </div>
       </div>
+      <div className="row">
+        <div className="col-12 d-flex justify-content-center mt-3">
+          <h2>Serviços Ativos</h2>
+        </div>
+      </div>
+      <div className="row">
+        <div className="col-12">
+          <div className="servicesList">
+            {services.length > 0 ? (
+              <ul class="list-group list-group-flush">
+                {services.map((item) => {
+                  return (
+                    <li class="list-group-item">
+                      <div className="col-6 d-flex justify-content-start">
+                        <p classname="align-start">
+                          <span>Serviço:</span> {item.nome}
+                        </p>
+                      </div>
+                      <div className="col-6 d-flex-justify-content-end">
+                        <div className="service-buttons">
+                          <button
+                            className="button-viewDetails"
+                            onClick={() => {
+                              window.location.href = `/status-services/${item.idservicos}`;
+                            }}
+                          >
+                            Ver Detalhes
+                          </button>
+                          <button className="button-deleteService">
+                            Excluir
+                          </button>
+                        </div>
+                      </div>
+                    </li>
+                  );
+                })}
+              </ul>
+            ) : (
+              <h2 className="no-service">
+                Você não tem nenhum serviço ativo ;(
+              </h2>
+            )}
+          </div>
+        </div>
+      </div>
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Cadastro</Modal.Title>
+        </Modal.Header>
+        <Modal.Body className="new-service-modal-container">
+          <label htmlFor="service">Nome do Serviço ;)</label>
+          <input
+            type="text"
+            id="service"
+            placeholder="Exemplo: Compra no mercado."
+            onChange={myChangeHandlerName}
+          />
+          <label htmlFor="description">Descrição:</label>
+          <input
+            type="text"
+            id="description"
+            placeholder="Escreva os detalhes específicos do serviço como: Itens, região e entre outros detalhes ;)"
+            onChange={myChangeHandlerDescription}
+          />
+          <label htmlFor="date-limit">Data Limite:</label>
+          <input type="date" id="date-limit" onChange={myChangeHandlerLimit} />
+        </Modal.Body>
+        <Modal.Footer>
+          <button className="buttonRegisterService" onClick={sendService}>
+            Cadastrar Novo Serviço
+          </button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 };

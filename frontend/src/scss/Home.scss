@@ -1,45 +1,66 @@
 .CTAButtons {
   display: flex;
   justify-content: flex-end;
-  margin-right: 50px;
-  margin-top: 50px;
 }
 
-.modals {
+.modalContainer {
+  color: black;
+  border-radius: 30px;
   display: flex;
   justify-content: center;
-}
-
-.closeModal {
+  flex-direction: column;
+  padding: 25px;
+  padding-bottom: 60px;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
     Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  font-weight: bold;
-  color: red;
-  position: relative;
-  top: -150px;
-  left: 7%;
-  display: none;
-  z-index: 99999999999;
-  transition: 0.2s ease-in-out;
 
-  &:hover {
-    text-shadow: 1px 1px 1px grey;
-    cursor: pointer;
+  .sr-only {
+    display: none;
   }
 
-  &.show {
+  .login-modal-container {
+    display: flex;
+    flex-direction: column;
+    padding: 50px;
+  }
+
+  p {
+    font-size: 30px;
+    justify-content: center;
     display: flex;
   }
-}
 
-@media (max-width: 1200px) {
-  .CTAButtons {
-    margin-right: 20px;
-    margin-top: -100px;
+  label {
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 20px;
   }
 
-  .closeModal {
-    top: -30px;
-    left: 150px;
+  input {
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+  }
+
+  input[type='checkbox'] {
+    margin-bottom: 10px;
+  }
+
+  .loginButton {
+    margin-top: 15px;
+    padding: 20px;
+    width: 100%;
+    align-self: center;
+    font-size: 22px;
+    font-weight: bold;
+    border-radius: 15px;
+    border: none;
+    background-color: #eed918;
+    transition: box-shadow 0.2s ease-in-out;
+
+    &:hover {
+      box-shadow: 2px 2px 2px grey;
+      cursor: pointer;
+    }
   }
 }

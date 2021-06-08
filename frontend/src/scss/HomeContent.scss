@@ -1,9 +1,7 @@
 .home-content {
   width: 100%;
-  position: absolute;
   display: flex;
-  bottom: 0;
-  padding-bottom: 180px;
+  padding-bottom: 100px;
   justify-content: space-between;
   background-color: #c7c7c7c7;
 
@@ -14,46 +12,5 @@
       Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-weight: 600;
     font-size: 30px;
-  }
-
-  .home-image2 {
-    position: absolute;
-    padding-top: 70px;
-    padding-left: 20px;
-  }
-
-  .home-image1 {
-    position: absolute;
-    padding-top: 30px;
-    padding-left: 350px;
-  }
-
-  .button-register {
-    position: absolute;
-  }
-}
-
-@media (max-width: 1200px) {
-  .home-content {
-    padding-bottom: 130px;
-    background-color: #c7c7c7c7;
-
-    p {
-      padding-top: 30px;
-      padding-left: 20px;
-      font-size: 20px;
-    }
-
-    .home-image2 {
-      display: none;
-    }
-
-    .home-image1 {
-      display: none;
-    }
-
-    .button-container {
-      top: 80px !important;
-    }
   }
 }
