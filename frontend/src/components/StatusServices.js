@@ -48,16 +48,21 @@ const StatusServices = () => {
         Acompanhe os seus serviços ativos ;)
       </Background>
       <div className="CTAButtons">
-        <Button href="/meus-servicos" bgColor="#FFFFFF">
-          Meus Serviços
-        </Button>
         {nivel_usuario == 1 &&
-        <div onClick={showNewServiceModal}>
-          <Button bgColor="#FFF500">Novo Serviço</Button>
-        </div>
-        
+          <div onClick={showNewServiceModal}>
+            <Button bgColor="#FFF500">Novo Serviço</Button>
+          </div>
         }
-        
+        {nivel_usuario == 1 &&
+          <Button href="/meus-servicos-vulneravel" bgColor="#FFFFFF">
+            Meus Serviços
+          </Button>
+        }
+        {nivel_usuario == 0 &&
+          <Button href="/meus-servicos" bgColor="#FFFFFF">
+            Meus Serviços
+          </Button>
+        }
       </div>
       <p className="p_status">Status do Serviço</p>
       {service.map((item) => {
@@ -75,12 +80,14 @@ const StatusServices = () => {
               <span>Data limite:</span>
               {item.limite}
             </div>
+            
             <div className="status">
               <span>Status:</span>
               {item.status === 'undefined' && <p>Aguardando Voluntário</p>}
               {item.status === 'Ativo' && <p>Em andamento</p>}
               {item.status === 'Finalizado' && <p>Finalizado</p>}
             </div>
+            <button className='button-finalizarServico'>Finalizar Serviço</button>
           </div>
         );
       })}

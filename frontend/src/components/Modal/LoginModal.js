@@ -46,14 +46,14 @@ const LoginModal = ({ modalRef, className }) => {
         <input
           type="text"
           id="cpf"
-          placeholder="111.222.333-00"
+          placeholder="000.000.000-00"
           onChange={myChangeHandlerCPF}
         />
         <label htmlFor="senha">Senha:</label>
         <input
           type="password"
           id="senha"
-          placeholder="*****"
+          placeholder="Insira sua senha ;)"
           onChange={myChangeHandlerPassword}
         />
         <button onClick={sendLogin}>Login</button>

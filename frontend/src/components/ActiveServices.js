@@ -44,7 +44,7 @@ const ActiveServices = () => {
       <div onClick={showNewServiceModal}>
         <Button bgColor="#FFF500">Novo Serviço</Button>
       </div>
-      <h2>Serviços ativos</h2>
+      <h2>Serviços Ativos</h2>
       <div className="servicesList">
         {services.length > 0 ? (
           <ul>
@@ -54,7 +54,8 @@ const ActiveServices = () => {
                   <p>
                     <span>Serviço:</span> {item.nome}
                   </p>
-                  <button
+                  <button className="button-deleteService">Excluir</button>
+                  <button className="button-viewDetails"
                     onClick={() => {
                       window.location.href = `/status-services/${item.idservicos}`;
                     }}

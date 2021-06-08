@@ -30,7 +30,7 @@ const NewServiceModal = ({ modalRef, className }) => {
       })
       .then((resp) => {
         alert('Serviço cadastrado com sucesso!');
-        window.reload();
+        window.location.reload();
       });
   };
 
@@ -41,14 +41,14 @@ const NewServiceModal = ({ modalRef, className }) => {
         <input
           type="text"
           id="service"
-          placeholder="Compra no Mercado"
+          placeholder="Exemplo: Compra no mercado."
           onChange={myChangeHandlerName}
         />
         <label htmlFor="description">Descrição:</label>
         <input
           type="text"
           id="description"
-          placeholder="Comprar um litro de leite"
+          placeholder="Escreva os detalhes específicos do serviço como: Itens, região e entre outros detalhes ;)"
           onChange={myChangeHandlerDescription}
         />
         <label htmlFor="date-limit">Data Limite:</label>

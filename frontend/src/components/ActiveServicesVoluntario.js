@@ -24,7 +24,7 @@ const ActiveServicesVoluntario = () => {
         <Button bgColor="#FFF500" href="./servicos-disponiveis">
           Serviços Disponíveis
         </Button>
-        <h2>Serviços ativos</h2>
+        <h2>Serviços Ativos</h2>
         <div className="servicesList">
           {services.length > 0 ? (
             <ul>

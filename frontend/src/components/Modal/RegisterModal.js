@@ -50,7 +50,7 @@ const RegisterModal = ({ modalRef, className }) => {
         endereco: address,
       })
   };
-
+ 
   return (
     <div ref={modalRef} className={`${className} register-modal`}>
       <div className="register-modal-container">
@@ -63,10 +63,10 @@ const RegisterModal = ({ modalRef, className }) => {
         />
         <label htmlFor="cpf">CPF:</label>
         <input
-          type="text"
-          id="cpf"
+          type="cpf"
+          id="text"
           placeholder="000.000.000/00"
-          onChange={myChangeHandlerCPF}
+          onChange={myChangeHandlerCPF}      
         />
         <label htmlFor="endereco">Endereço:</label>
         <input
