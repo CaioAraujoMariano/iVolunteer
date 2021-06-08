@@ -3,6 +3,7 @@ import '../scss/HomeContent.scss';
 import Button from './Button';
 import Modal from 'react-bootstrap/Modal';
 import axios from 'axios';
+import MaskedInputCpf from './MaskedInputCpf';
 
 const HomeContent = ({ onClickFunction }) => {
   const [registerShow, setRegisterShow] = React.useState(false);
@@ -59,7 +60,7 @@ const HomeContent = ({ onClickFunction }) => {
       <div className="container-fluid">
         <div className="row">
           <div className="col-12 col-md-6 d-flex justify-content-center position-relative">
-            <p>Seja um voluntário e ajude as pessoas ;)</p>
+            <p>Nossa missão é ajudar o próximo ;)</p>
           </div>
           <div className="col-12 col-md-6 d-flex justify-content-end mt-5">
             <div onClick={handleRegisterShow}>
@@ -67,7 +68,10 @@ const HomeContent = ({ onClickFunction }) => {
                 Cadastre-se aqui ;)
               </Button>
             </div>
-            <Modal show={registerShow} onHide={handleRegisterClose}>
+            <Modal 
+            show={registerShow} 
+            onHide={handleRegisterClose}
+            className="modalRegisterContainer">
               <Modal.Header closeButton>
                 <Modal.Title>Cadastro</Modal.Title>
               </Modal.Header>
@@ -76,11 +80,11 @@ const HomeContent = ({ onClickFunction }) => {
                 <input
                   type="text"
                   id="name"
-                  placeholder="Fulano da Silva"
+                  placeholder="Digite seu nome completo"
                   onChange={myChangeHandlerName}
                 />
                 <label htmlFor="cpf">CPF:</label>
-                <input
+                <MaskedInputCpf
                   type="cpf"
                   id="text"
                   placeholder="000.000.000/00"
@@ -114,6 +118,7 @@ const HomeContent = ({ onClickFunction }) => {
                     name="chooseProfile"
                     value="0"
                     onChange={myChangeHandlerProfile}
+                    className="inputRadioVoluntario"
                   />
                   <label htmlFor="chooseProfile">Voluntário</label>
                   <input
@@ -122,6 +127,7 @@ const HomeContent = ({ onClickFunction }) => {
                     name="chooseProfile"
                     value="1"
                     onChange={myChangeHandlerProfile}
+                    className="inputRadioVulneravel"
                   />
                   <label htmlFor="chooseProfile">Vulnerável</label>
                 </div>
@@ -132,9 +138,17 @@ const HomeContent = ({ onClickFunction }) => {
                   placeholder="Crie uma senha"
                   onChange={myChangeHandlerPassword}
                 />
+                <label htmlFor="password">Senha</label>
+                <input
+                  type="password"
+                  id="password"
+                  placeholder="Confirme sua senha ;)"
+                  onChange={myChangeHandlerPassword}
+                />
+                <a href="#">Possui um cadastro?</a>
               </Modal.Body>
               <Modal.Footer>
-                <button onClick={sendRegister}>Cadastrar Usuário</button>
+                <button onClick={sendRegister} className="registerButton">Cadastrar Usuário</button>
               </Modal.Footer>
             </Modal>
           </div>

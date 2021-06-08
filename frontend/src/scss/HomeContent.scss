@@ -1,7 +1,7 @@
 .home-content {
   width: 100%;
   display: flex;
-  padding-bottom: 100px;
+  padding-bottom: 76px;
   justify-content: space-between;
   background-color: #c7c7c7c7;
 
@@ -12,5 +12,87 @@
       Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-weight: 600;
     font-size: 30px;
+  }
+}
+
+.modalRegisterContainer{
+  color: black;
+  border-radius: 30px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 25px;
+  padding-bottom: 50px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+  .sr-only {
+    display: none;
+  }
+  
+  .close{
+    border: none;
+    background-color: #FFFFFF;
+    font-size: 28px;
+  }
+  
+  .register-modal-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  p {
+    font-size: 30px;
+    justify-content: center;
+    display: flex;
+  }
+  
+  label {
+    font-weight: bold;
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+  
+  input {
+    border: none;
+    border-radius: 10px 10px 0 0;
+    padding: 10px;
+    border-bottom: 1px solid grey;
+  }
+
+  .chooseProfileVulneravel, .chooseProfileVoluntario{
+    margin-left: 5px;
+  }
+
+  input[type='radio'] {
+    margin-bottom: 10px;
+  }
+
+  .inputRadioVulneravel{
+    margin-left: 10px;
+  }
+
+  a{
+    margin-top: 15px;
+    width: 150px;
+    text-decoration:none; 
+  }
+  
+  .registerButton {
+    margin-top: 10px;
+    padding: 15px;
+    width: 100%;
+    align-self: center;
+    font-size: 22px;
+    font-weight: bold;
+    border-radius: 15px;
+    border: none;
+    background-color: #eed918;
+    transition: box-shadow 0.2s ease-in-out;
+  
+    &:hover {
+    box-shadow: 2px 2px 2px grey;
+    cursor: pointer;
+    }
   }
 }

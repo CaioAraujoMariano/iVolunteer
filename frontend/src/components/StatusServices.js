@@ -62,25 +62,19 @@ const StatusServices = () => {
       <div className="container-fluid mt-5">
         <div className="row pt-5 pb-5">
           <div className="col-sm-12 col-md-6 d-flex justify-content-end mt-5">
-            <Background title="Olá Fulano!">
-              Acompanhe os seus serviços ativos ;)
+            <Background title="Acompanhe o status do seu serviço ;)">
             </Background>
           </div>
           <div className="col-sm-12 col-md-6 d-flex flex-column  mt-5">
             <div className="row">
               <div className="CTAButtons mt-5">
                 {nivel_usuario == 1 && (
-                  <div onClick={handleShow}>
-                    <Button bgColor="#FFF500">Novo Serviço</Button>
-                  </div>
-                )}
-                {nivel_usuario == 1 && (
-                  <Button href="/meus-servicos-vulneravel" bgColor="#FFFFFF">
+                  <Button href="/meus-servicos-vulneravel" bgColor="#FFF500">
                     Meus Serviços
                   </Button>
                 )}
                 {nivel_usuario == 0 && (
-                  <Button href="/meus-servicos" bgColor="#FFFFFF">
+                  <Button href="/meus-servicos" bgColor="#FFF500">
                     Meus Serviços
                   </Button>
                 )}
@@ -88,6 +82,7 @@ const StatusServices = () => {
             </div>
             <div className="row">
               <div className="col-12">
+                <h2 className="title-serviceStatus">Status do Serviço</h2>
                 {service.map((item) => {
                   return (
                     <div className="status-container">
@@ -103,14 +98,13 @@ const StatusServices = () => {
                         <span>Data limite:</span>
                         {item.limite}
                       </div>
-
                       <div className="status">
                         <span>Status:</span>
-                        {item.status === 'undefined' && (
+                        {item.id_voluntario === null && (
                           <p>Aguardando Voluntário</p>
                         )}
-                        {item.status === 'Ativo' && <p>Em andamento</p>}
-                        {item.status === 'Finalizado' && <p>Finalizado</p>}
+                        {item.id_voluntario !== null && <p>Em andamento</p>}
+                        {item.id_voluntario === 'Finalizado' && <p>Finalizado</p>}
                       </div>
                       {nivel_usuario == 0 && (
                         <button className="button-finalizarServico">

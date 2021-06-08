@@ -10,7 +10,7 @@ const Footer = () => {
             <a href="#">Quem Somos?</a>
           </div>
           <div className="col-12 col-md-6 d-flex justify-content-md-end">
-            <p>Develop by SquareTeam</p>
+            <p>Copyright</p>
           </div>
         </div>
       </div>

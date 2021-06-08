@@ -46,7 +46,7 @@ const ActiveServicesVoluntario = () => {
                           </p>
                         </div>
                         <div className="col-6 d-flex-justify-content-end">
-                          <div className="service-buttons">
+                          <div className="service-buttonsVolunteer">
                             <button
                               className="button-viewDetails"
                               onClick={() => {
@@ -54,9 +54,6 @@ const ActiveServicesVoluntario = () => {
                               }}
                             >
                               Ver Detalhes
-                            </button>
-                            <button className="button-deleteService">
-                              Excluir
                             </button>
                           </div>
                         </div>

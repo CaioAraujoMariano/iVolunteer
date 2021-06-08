@@ -10,7 +10,10 @@ const AvailableServices = () => {
   const [show, setShow] = React.useState(false);
   const [serviceId, setServiceId] = React.useState('');
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const handleShow = (event) => { 
+    console.log(event.target.className)
+    setShow(true)
+  };
 
   useEffect(() => {
     fetch('http://localhost:8000/servicos')
@@ -24,6 +27,9 @@ const AvailableServices = () => {
   const sendConfirmation = (id) => {
     axios.put(`http://localhost:8000/servicos/${id}`, {
       id_voluntario: id_voluntario,
+    }).then((resp) => {
+      alert('Serviço adicionado a sua lista de serviços!');
+      window.location.reload();
     });
   };
 
@@ -46,33 +52,12 @@ const AvailableServices = () => {
                         </p>
                         <button
                           className="btn btn-success confirmationButton"
-                          onClick={handleShow}
+                          onClick={() => { setShow(true); setServiceId(item.idservicos) } 
+                          }
                         >
                           Ser Voluntário
                         </button>
                       </div>
-                      <Modal show={show} onHide={handleClose}>
-                        <Modal.Header closeButton>
-                          <Modal.Title>Cadastro</Modal.Title>
-                        </Modal.Header>
-                        <Modal.Body className="new-service-modal-container">
-                          <div>
-                            <h2>
-                              Tem certeza que deseja se voluntariar para este
-                              serviço?
-                            </h2>
-                          </div>
-                        </Modal.Body>
-                        <Modal.Footer>
-                          <button
-                            onClick={() => {
-                              sendConfirmation(serviceId);
-                            }}
-                          >
-                            Sim, quero ser um voluntário.
-                          </button>
-                        </Modal.Footer>
-                      </Modal>
                     </div>
                   </div>
                 </>
@@ -82,6 +67,31 @@ const AvailableServices = () => {
         </div>
       </div>
       <Footer />
+      <Modal
+        show={show} 
+        onHide={handleClose}
+        className="modalServiceContainer">
+        <Modal.Header closeButton>
+          <Modal.Title>Aceitar Serviço? ;)</Modal.Title>
+        </Modal.Header>
+        <Modal.Body className="modal-service-container">
+          <div>
+            <h2>
+              Tem certeza que deseja se voluntariar para este
+              serviço?
+            </h2>
+          </div>
+        </Modal.Body>
+        <Modal.Footer>
+          <button className="buttonAcceptService"
+            onClick={() => {
+            sendConfirmation(serviceId)
+            }}
+            >
+            Sim, quero ser um voluntário.
+          </button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 };

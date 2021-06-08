@@ -7,6 +7,8 @@ import Button from './Button';
 import Background from './Background';
 import Modal from 'react-bootstrap/Modal';
 import axios from 'axios';
+import MaskedInputCpf from './MaskedInputCpf';
+import MaskedInputTelefone from './MaskedInputTelefone';
 
 const Home = () => {
   const [loginShow, setLoginShow] = React.useState(false);
@@ -89,7 +91,11 @@ const Home = () => {
       nivel_usuario: parseInt(profile),
       senha: password,
       endereco: address,
-    });
+    }).then(
+      alert('Usuário cadastrado com sucesso! Realize o login.'),
+      window.location.reload()
+    );
+    
   };
 
   const handleLoginClose = () => setLoginShow(false);
@@ -103,7 +109,7 @@ const Home = () => {
       <div className="container-fluid mt-5">
         <div className="row pt-5 pb-5">
           <div className="col-sm-12 col-md-6 d-flex justify-content-end mt-5">
-            <Background title="Nossa missão é ajudar o próximo ;)" />
+            <Background title="Seja um voluntário e ajude as pessoas ;)" />
           </div>
           <div className="col-sm-12 col-md-6 d-flex justify-content-end mt-5">
             <div className="CTAButtons mt-5">
@@ -114,34 +120,37 @@ const Home = () => {
                 <Button bgColor="#FFF500">Cadastre-se</Button>
               </div>
             </div>
-            <Modal show={registerShow} onHide={handleRegisterClose}>
+            <Modal 
+            show={registerShow} 
+            onHide={handleRegisterClose}
+            className="modalRegisterContainer">
               <Modal.Header closeButton>
-                <Modal.Title>Cadastro</Modal.Title>
+                <Modal.Title>Cadastro ;)</Modal.Title>
               </Modal.Header>
               <Modal.Body className="register-modal-container">
                 <label htmlFor="name">Nome completo:</label>
                 <input
                   type="text"
                   id="name"
-                  placeholder="Fulano da Silva"
+                  placeholder="Digite seu nome completo"
                   onChange={myChangeHandlerName}
                 />
                 <label htmlFor="cpf">CPF:</label>
-                <input
-                  type="cpf"
-                  id="text"
-                  placeholder="000.000.000/00"
-                  onChange={myChangeHandlerCPF}
+                <MaskedInputCpf
+                type="cpf"
+                id="text"
+                placeholder="000.000.000/00"
+                onChange={myChangeHandlerCPF}
                 />
                 <label htmlFor="endereco">Endereço:</label>
                 <input
                   type="text"
                   id="endereco"
-                  placeholder="Rua Alves da Cunha Nº 556"
+                  placeholder="Digite seu endereço"
                   onChange={myChangeHandlerAddress}
                 />
-                <label htmlFor="telefone">Telefone</label>
-                <input
+                <label htmlFor="telefone">Telefone:</label>
+                <MaskedInputTelefone
                   type="text"
                   id="telefone"
                   placeholder="Digite seu telefone"
@@ -153,7 +162,7 @@ const Home = () => {
                   id="data-nascimento"
                   onChange={myChangeHandlerDate}
                 />
-                <label>Tipo de usuário</label>
+                <label>Tipo de usuário:</label>
                 <div className="checkOptions">
                   <input
                     type="radio"
@@ -161,41 +170,51 @@ const Home = () => {
                     name="chooseProfile"
                     value="0"
                     onChange={myChangeHandlerProfile}
+                    className="inputRadioVoluntario"
                   />
-                  <label htmlFor="chooseProfile">Voluntário</label>
+                  <label htmlFor="chooseProfile" className="chooseProfileVoluntario">Voluntário</label>
                   <input
                     type="radio"
                     id="chooseProfile"
                     name="chooseProfile"
                     value="1"
                     onChange={myChangeHandlerProfile}
+                    className="inputRadioVulneravel"
                   />
-                  <label htmlFor="chooseProfile">Vulnerável</label>
+                  <label htmlFor="chooseProfile" className="chooseProfileVulneravel">Vulnerável</label>
                 </div>
-                <label htmlFor="password">Senha</label>
+                <label htmlFor="password">Senha:</label>
                 <input
                   type="password"
                   id="password"
                   placeholder="Crie uma senha"
                   onChange={myChangeHandlerPassword}
                 />
+                <label htmlFor="password">Confirme a senha:</label>
+                <input
+                  type="password"
+                  id="password"
+                  placeholder="Confirme sua senha ;)"
+                  onChange={myChangeHandlerPassword}
+                />
+                {/* <a href="#">Possui um cadastro?</a> */}
               </Modal.Body>
               <Modal.Footer>
-                <button onClick={sendRegister}>Cadastrar Usuário</button>
+                <button onClick={sendRegister} className="registerButton">Cadastrar Usuário</button>
               </Modal.Footer>
             </Modal>
 
             <Modal
               show={loginShow}
               onHide={handleLoginClose}
-              className="modalContainer"
+              className="modalLoginContainer"
             >
               <Modal.Header className="modalHeader" closeButton>
-                <Modal.Title className="modalTitle">Login</Modal.Title>
+                <Modal.Title className="modalTitle">Login ;)</Modal.Title>
               </Modal.Header>
               <Modal.Body className="login-modal-container">
                 <label htmlFor="cpf">CPF:</label>
-                <input
+                <MaskedInputCpf
                   type="text"
                   id="cpf"
                   placeholder="000.000.000-00"
@@ -208,6 +227,7 @@ const Home = () => {
                   placeholder="Insira sua senha ;)"
                   onChange={myChangeHandlerPasswordLogin}
                 />
+                {/* <a href="#">Esqueceu sua senha?</a> */}
               </Modal.Body>
               <Modal.Footer>
                 <button onClick={sendLogin} className="loginButton">

@@ -39,6 +39,16 @@ const ActiveServices = () => {
       });
   };
 
+  const deleteService = (id) => {
+    axios
+      .delete(`http://localhost:8000/servicos/${id}`
+      )
+      .then((resp) => {
+        alert('Serviço deletado!');
+        window.location.reload();
+      });
+  };
+
   useEffect(() => {
     let id_vulneravel = localStorage.getItem('id');
     axios
@@ -90,7 +100,9 @@ const ActiveServices = () => {
                           >
                             Ver Detalhes
                           </button>
-                          <button className="button-deleteService">
+                          <button className="button-deleteService" onClick={()=>{
+                            deleteService(item.idservicos)
+                          }}>
                             Excluir
                           </button>
                         </div>
@@ -107,12 +119,15 @@ const ActiveServices = () => {
           </div>
         </div>
       </div>
-      <Modal show={show} onHide={handleClose}>
+      <Modal 
+      show={show} 
+      onHide={handleClose}
+      className="modalNewServiceContainer">
         <Modal.Header closeButton>
-          <Modal.Title>Cadastro</Modal.Title>
+          <Modal.Title>Novo Serviço ;)</Modal.Title>
         </Modal.Header>
         <Modal.Body className="new-service-modal-container">
-          <label htmlFor="service">Nome do Serviço ;)</label>
+          <label htmlFor="service">Nome do Serviço:</label>
           <input
             type="text"
             id="service"
@@ -123,14 +138,14 @@ const ActiveServices = () => {
           <input
             type="text"
             id="description"
-            placeholder="Escreva os detalhes específicos do serviço como: Itens, região e entre outros detalhes ;)"
+            placeholder="Escreva detalhadamente o serviço ;)"
             onChange={myChangeHandlerDescription}
           />
           <label htmlFor="date-limit">Data Limite:</label>
           <input type="date" id="date-limit" onChange={myChangeHandlerLimit} />
         </Modal.Body>
         <Modal.Footer>
-          <button className="buttonRegisterService" onClick={sendService}>
+          <button className="buttonRegisterService" onClick={sendService} >
             Cadastrar Novo Serviço
           </button>
         </Modal.Footer>
