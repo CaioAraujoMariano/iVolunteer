@@ -16,7 +16,7 @@ const AvailableServices = () => {
   };
 
   useEffect(() => {
-    fetch('http://localhost:8000/servicos')
+    fetch('http://localhost:8000/servicos-disponiveis')
       .then((res) => res.json())
       .then((result) => {
         setServicos(result);
@@ -26,7 +26,8 @@ const AvailableServices = () => {
   let id_voluntario = localStorage.getItem('id');
   const sendConfirmation = (id) => {
     axios.put(`http://localhost:8000/servicos/${id}`, {
-      id_voluntario: id_voluntario,
+      status: 'Em Andamento',
+      id_voluntario: id_voluntario
     }).then((resp) => {
       alert('Serviço adicionado a sua lista de serviços!');
       window.location.reload();
@@ -38,32 +39,37 @@ const AvailableServices = () => {
       <Header />
       <div className="service-card-container">
         <div className="container">
+          {servicos.length > 0 ?
           <div className="row">
-            {servicos.map((item) => {
-              return (
-                <>
-                  <div className="col-12 col-md-4 mb-5">
-                    <div class="card serviceCard">
-                      <div class="card-header serviceCardTitle">Serviço</div>
-                      <div class="card-body">
-                        <h5 class="card-title serviceTitle">{item.nome}</h5>
-                        <p class="card-text serviceDescription">
-                          {item.descricao}
-                        </p>
-                        <button
-                          className="btn btn-success confirmationButton"
-                          onClick={() => { setShow(true); setServiceId(item.idservicos) } 
-                          }
-                        >
-                          Ser Voluntário
-                        </button>
-                      </div>
+          {servicos.map((item) => {
+            return (
+              <>
+                <div className="col-12 col-md-4 mb-5">
+                  <div class="card serviceCard">
+                    <div class="card-header serviceCardTitle">Serviço</div>
+                    <div class="card-body">
+                      <h5 class="card-title serviceTitle">{item.nome}</h5>
+                      <p class="card-text serviceDescription">
+                        {item.descricao}
+                      </p>
+                      <button
+                        className="btn btn-success confirmationButton"
+                        onClick={() => { setShow(true); setServiceId(item.idservicos) } 
+                        }
+                      >
+                        Ser Voluntário
+                      </button>
                     </div>
                   </div>
-                </>
-              );
-            })}
+                </div>
+              </>
+            );
+          })}
           </div>
+          :
+          <h2 className="no-service">Não há serviços disponíveis ;(</h2>
+          }
+          
         </div>
       </div>
       <Footer />

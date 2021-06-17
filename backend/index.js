@@ -41,15 +41,6 @@ router.post('/servicos', (req, res) => {
   );
 });
 
-// router.put('/servicos/:id', (req, res) => {
-//   const id = parseInt(req.params.id);
-//   const status = req.body.status;
-//   execSQLQuery(
-//     `UPDATE servicos SET status="${status}" WHERE idservicos = "${id}"`,
-//     res,
-//   );
-// });
-
 // APIS DE USUARIOS
 
 router.get('/usuarios', (req, res) => {
@@ -102,15 +93,32 @@ router.post('/servicos/voluntario', (req, res, err) => {
 // API DE ATUALIZAR STATUS DO SERVICOS
 
 router.put('/servicos/:id?', (req, res, err) => {
-  const { id_voluntario} = req.body;
-
-  execSQLQuery(`UPDATE servicos SET id_voluntario = '${id_voluntario}'WHERE idservicos = '${req.params.id}'`, res);
+  const { status, id_voluntario } = req.body;
+  
+  execSQLQuery(`UPDATE servicos SET STATUS = '${status}', id_voluntario = '${id_voluntario}' WHERE idservicos = '${req.params.id}'`, res);
 })
 
 //API DE DELETAR SERVIÇOS
 
 router.delete('/servicos/:id?', (req, res, err) => {
-  const { id_voluntario} = req.body;
+  const { id_voluntario } = req.body;
 
   execSQLQuery(`DELETE FROM servicos WHERE idservicos = '${req.params.id}'`, res);
 })
+
+//API DE FINALIZAR SERVIÇOS
+
+router.put('/servicos/:id', (req, res, err) => {
+  const { status } = req.body;
+
+  execSQLQuery(`UPDATE servicos SET STATUS = '${status}' WHERE idservicos = '${req.params.id}'`, res)
+
+})
+
+//API DE PEGAR SERVIÇOS DISPONIVEIS
+
+router.get('/servicos-disponiveis', (req, res, err) => {
+
+  execSQLQuery(`SELECT * FROM servicos WHERE status = 'undefined'`, res);
+})
+

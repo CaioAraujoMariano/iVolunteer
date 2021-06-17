@@ -56,6 +56,15 @@ const StatusServices = () => {
       });
   }, [id]);
 
+  const endService = (id) => {
+    axios.put(`http://localhost:8000/servicos/${id}`, {
+      status: 'Finalizado',
+    }).then((resp) => {
+      alert('Serviço adicionado a sua lista de serviços!');
+      window.location.reload();
+    });
+  };
+
   return (
     <div className="status-services-container">
       <Header />
@@ -103,11 +112,14 @@ const StatusServices = () => {
                         {item.id_voluntario === null && (
                           <p>Aguardando Voluntário</p>
                         )}
-                        {item.id_voluntario !== null && <p>Em andamento</p>}
-                        {item.id_voluntario === 'Finalizado' && <p>Finalizado</p>}
+                        {item.status === 'Em Andamento' && <p>Em andamento</p>}
+                        {item.status === 'Finalizado' && <p>Finalizado</p>}
                       </div>
                       {nivel_usuario == 0 && (
-                        <button className="button-finalizarServico">
+                        <button className="button-finalizarServico" onClick={() => {
+                          endService(item.idservicos);
+                          }}
+                          >
                           Finalizar Serviço
                         </button>
                       )}
